@@ -1,4 +1,5 @@
- const express = require("express");
+const express = require("express");
+const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require('cors')
 require('dotenv').config();
@@ -7,18 +8,7 @@ const apiRoutes = require("./routes/apiRoute");
 require("./dbMaster");
 const path = require("path");
 app.use(express.json())
-var globalvariable = 1111;
-// Uncaught Exception Handling
-process.on('uncaughtException', (err) => {
-    console.error('Uncaught Exception: ', err);
-    process.exit(1); 
-});
-
-process.on('unhandledRejection', (reason, promise) => {
-    console.error('Unhandled Rejection: ', reason);
-    process.exit(1); // Exit the process after cleanup
-});
-
+app.use(cookieParser());
 app.use(cors({
     origin: true,
     methods:["GET", "POST", "PUT", "DELETE"],

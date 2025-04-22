@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 
-const getTenantDB = (schemaName = "default_schema") => {
+const getTenantDB = (schemaName) => {
   const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT || 3306,
@@ -8,7 +8,7 @@ const getTenantDB = (schemaName = "default_schema") => {
     password: process.env.DB_PASSWORD,
     database: schemaName
   });
-
+  
   connection.connect((err) => {
     if (err) {
       console.error(`Error connecting to schema [${schemaName}]:`, err);

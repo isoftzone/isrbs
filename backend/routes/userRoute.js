@@ -106,9 +106,9 @@ router.put("/editUser/:id",verifyToken,users.editUser);
 // router.post("/postcmbAW",verifyToken,fillCombo.postcmbAW);
 // router.get("/getcmbAW",verifyToken,fillCombo.getcmbAW);
 
-// router.get("/getMaster",verifyToken,agent.getMaster);
-// router.get("/getMasterPagination",verifyToken,agent.agents);
-// router.post("/addMaster",verifyToken,agent.addMaster);
+router.get("/getMaster",verifyToken,agent.getMaster);
+router.get("/getMasterPagination",verifyToken,agent.agents);
+router.post("/addMaster",verifyToken,agent.addMaster);
 
 // router.get("/getStiDetail",verifyToken,sti.getStiDetail);
 
