@@ -50,12 +50,6 @@ import StockInwardSearch from '../pages/Components/StockInwardSearch';
 import StockOutward from '../pages/Components/StockOutward';
 import StockOutwardSearch from '../pages/Components/StockOutwardSearch';
 import AgentReport from '../pages/Components/AgentReport';
-import ReportFromStock from '../pages/Components/ReportFromStock';
-import SMSSending from '../pages/Components/SMSSending';
-import MysqlOracle from '../pages/Components/MysqlOracle';
-import Calculation from '../pages/Components/Calculation'
-import ItemSettings from '../pages/Components/ItemSetting';
-import CalculationPage from '../pages/Components/Calculation';
 // import ExchangePolicy from /ExchangePolicy';
 const Index = lazy(() => import('../pages/Index'));
 const Analytics = lazy(() => import('../pages/Analytics'));
@@ -487,6 +481,74 @@ const routes = [
         path: '/components/agentreport',
         element: <AgentReport  />,
     },
+    {
+        path: '/components/customerreport',
+        element: <CustomerReport  />,
+    },
+    {
+        path: '/components/dealerreport',
+        element: <DealerReport  />,
+    },
+    {
+        path: '/components/employeereport',
+        element: <EmployeeReport  />,
+    },
+    {
+        path: '/components/purchasedetail',
+        element: <PurchaseDetail  />,
+    },
+    {
+        path: '/components/purchaseregister',
+        element: <PurchaseRegister  />,
+    },
+    {
+        path: '/components/purchasesummary',
+        element: <PurchaseSummary  />,
+    },
+    {
+        path: '/components/purchasegroupwise',
+        element: <PurchaseGroupWise  />,
+    },
+    {
+        path: '/components/dealerwisepurchase',
+        element: <DealerWisePurchase  />,
+    },
+    {
+        path: '/components/dealerwisepurchasedetails',
+        element: <DealerWisePurchaseDetails />,
+    },
+    {
+        path: '/components/dealerwisepurchasecomparison',
+        element: <DealerWisePurchaseComparison />,
+    },
+    {
+        path: '/components/entry',
+        element: <Entry />,
+    },
+    {
+        path: '/components/itemrate',
+        element: <ItemRate title="Item Rate Calculation" />,
+    },
+    {
+        path: '/components/SearchSales',
+        element: <SearchSales />,
+    },
+    {
+        path: '/components/salesdetailsearch',
+        element: <SalesDetailSearch />,
+    },
+    {
+        path: '/components/salesreturn',
+        element: <SalesReturn />,
+    },
+    {
+        path: '/components/itemsettings',
+        element: <ItemSettings />,
+    },
+    {
+        path: '/components/DetailSearchList',
+        element: <DetailSearchList />,
+    },
     
     {
         path: '/components/finyear',
@@ -547,18 +609,6 @@ const routes = [
     {
         path: '/components/worktype',
         element: <WorkType />,
-    },
-    {
-        path: '/components/reportfromstock',
-        element: <ReportFromStock />,
-    },
-    {
-        path: '/components/PrinterSettings',
-        element: <PrinterSettings />,
-    },
-    {
-        path: '/components/BillNumberRange',
-        element: <BillNumberRange />,
     },
     // elements page
     {

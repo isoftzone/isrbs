@@ -1,5 +1,9 @@
-const express = require("express");
-const con = require('../config')
+
+const getTenantDB = require("../config"); // this should export a function
+const util = require("util");
+
+// const express = require("express");
+// const con = require('../config')
 
 exports.addProducts = (req, res) => {
     const { codetype, createdby, primename, status, sequence, remark, companyid } = req.body;
@@ -50,6 +54,9 @@ exports.getCompanyId = async (req, res) => {
  };
 
 exports.getCodeTypeData = (req, res) => {
+      const schemaName = req.schema;
+      const con = getTenantDB(schemaName);
+      const query = util.promisify(con.query).bind(con);
     const { codetype, page = 1, pageSize = 10 } = req.query;
 
     let sql = `SELECT codetype, primekeyid, primename, status, sequence, remark FROM master`;

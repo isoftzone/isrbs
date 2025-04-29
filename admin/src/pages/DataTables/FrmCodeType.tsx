@@ -79,6 +79,30 @@ const FrmCodeType = () => {
             case 'brand':
                 pageTitle = 'Brand';
                 break;
+                case 'formName':
+                pageTitle = 'FromName';
+                break;
+                case 'control':
+                    pageTitle = 'Control';
+                    break;
+                    case 'c_name':
+                        pageTitle = 'C_Name';
+                        break; 
+                        case 'c_type':
+                        pageTitle = 'C_Type';
+                        break;
+                         case 'c_value':
+                        pageTitle = 'C_Value';
+                        break; 
+                        case 'c_sequence':
+                            pageTitle = 'C_sequence';
+                            break; 
+                            case 'c_label':
+                            pageTitle = 'c_label';
+                            break; 
+                            case 'c_agent':
+                            pageTitle = 'c_agent';
+                            break; 
             case 'product':
                 pageTitle = 'Product';
                 break;
