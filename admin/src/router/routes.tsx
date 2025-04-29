@@ -30,6 +30,8 @@ import State from '../pages/Components/State';
 import Country from '../pages/Components/Country';
 import Title from '../pages/Components/Title';
 import ReasonOfReturn from '../pages/Components/ReasonOfReturn';
+import PrinterSettings from '../pages/Components/PrinterSettings';
+import BillNumberRange from '../pages/Components/BillNumberRange';
 import Location from '../pages/Components/Location';
 import District from '../pages/Components/District';
 import MaritalStatus from '../pages/Components/MaritalStatus';
@@ -48,6 +50,12 @@ import StockInwardSearch from '../pages/Components/StockInwardSearch';
 import StockOutward from '../pages/Components/StockOutward';
 import StockOutwardSearch from '../pages/Components/StockOutwardSearch';
 import AgentReport from '../pages/Components/AgentReport';
+import ReportFromStock from '../pages/Components/ReportFromStock';
+import SMSSending from '../pages/Components/SMSSending';
+import MysqlOracle from '../pages/Components/MysqlOracle';
+import Calculation from '../pages/Components/Calculation'
+import ItemSettings from '../pages/Components/ItemSetting';
+import CalculationPage from '../pages/Components/Calculation';
 // import ExchangePolicy from /ExchangePolicy';
 const Index = lazy(() => import('../pages/Index'));
 const Analytics = lazy(() => import('../pages/Analytics'));
@@ -304,6 +312,22 @@ const routes = [
         element: <SweetAlert />,
     },
     {
+        path: '/components/SMSSending',
+        element: <SMSSending />,
+    },
+    {
+        path: '/components/ItemSettings',
+        element: <ItemSettings />,
+    },
+    {
+        path: '/components/MysqlOracle',
+        element: <MysqlOracle />,
+    },
+    {
+        path: '/components/Calculation',
+        element: <CalculationPage />,
+    },
+    {
         path: '/components/timeline',
         element: <Timeline />,
     },
@@ -523,6 +547,18 @@ const routes = [
     {
         path: '/components/worktype',
         element: <WorkType />,
+    },
+    {
+        path: '/components/reportfromstock',
+        element: <ReportFromStock />,
+    },
+    {
+        path: '/components/PrinterSettings',
+        element: <PrinterSettings />,
+    },
+    {
+        path: '/components/BillNumberRange',
+        element: <BillNumberRange />,
     },
     // elements page
     {

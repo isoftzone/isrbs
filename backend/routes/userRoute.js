@@ -83,6 +83,9 @@ router.put("/editUser/:id",verifyToken,users.editUser);
 // router.get("/getAllcustomer",verifyToken,customer.getAll);
 // // router.delete("/deletecustomer/:id",verifyToken,customer.deletecustomer);
 // // router.put("/editcustomer/:id",verifyToken,customer.editcustomer);
+router.post("/customeradd",verifyToken, customer.customerAdd); 
+router.get("/getcustomer",verifyToken, customer.getcustomerMaster); 
+router.get("/customerSearch",verifyToken, customer.customerMastersearch )
 
 // //homepage
 // router.post("/add_data",verifyToken,homepage.add_data);

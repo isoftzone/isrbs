@@ -939,10 +939,25 @@ const Sidebar = () => {
                                             <NavLink to="/pages/knowledge-base">{t('knowledge_base')}</NavLink>
                                         </li> */}
                                        <li>
-                                                                    <NavLink to="/components/discountcoupon">Item Setting</NavLink>
+                                                                    <NavLink to="/components/ItemSettings">Item Setting</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/PrinterSettings">Printer Setting</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/BillNumberRange">Change Sale Bill</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/SMSSending">SMSSending</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/MysqlOracle">Mysql Oraclw</NavLink>
                                                                 </li>
                                                                 <li>
                                                                     <NavLink to="/components/refferalcoupan">Item Rate Calculation</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/Calculation">Calculation</NavLink>
                                                                 </li>
                                                                 <li>
                                                                     <NavLink to="/components/refferalcoupan">Rate Code</NavLink>
@@ -1549,15 +1564,15 @@ const Sidebar = () => {
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Item-Master')}</span>
                                     </div>
                                 </NavLink>
-                            </li>
+                            </li> */}
                             <li className="menu nav-item">
-                                <NavLink to="/Components/remotefrommaster" className="group">
+                                <NavLink to="/components/reportfromstock" className="group">
                                     <div className="flex items-center">
                                         <IconMenuTables className="group-hover:!text-primary shrink-0" />
-                                        <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Remote From Master')}</span>
+                                        <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Report From Stock')}</span>
                                     </div>
                                 </NavLink>
-                            </li> */}
+                            </li>
                             {/* <li className="menu nav-item">
                                 <NavLink to="/components/exchange-policy" className="group">
                                     <div className="flex items-center">
