@@ -44,7 +44,7 @@ const Sidebar = () => {
     const location = useLocation();
     const dispatch = useDispatch();
     const { t } = useTranslation();
-    
+
     const [currentMenu, setCurrentMenu] = useState(null);
     const [basicSubMenuOpen, setBasicSubMenuOpen] = useState(false);
     const [userSubMenuOpen, setUserSubMenuOpen] = useState(false);
@@ -59,18 +59,18 @@ const Sidebar = () => {
     const [empSubMenuOpen, setEmpSubMenuOpen] = useState(false);
     const [pivotSubMenuOpen, setPivotSubMenuOpen] = useState(false);
     const [orderSubMenuOpen, setOrderSubMenuOpen] = useState(false);
-    const[innPurchaseSubMenuOpen, setInnPurchaseSubMenuOpen]= useState(false);
-    const[salesReportSubMenuOpen, setSalesReportSubMenuOpen]= useState(false);
-    const[purReturnSubMenuOpen, setPurReturnSubMenuOpen]= useState(false);
-    const[salesReturnSubMenuOpen, setSalesReturnSubMenuOpen]= useState(false);
-    const[bestInSubMenuOpen, setBestInSubMenuOpen]= useState(false);
-    const[comparisionSubMenuOpen, setComparisionSubMenuOpen]= useState(false);
-    const[deliverySubMenuOpen, setDeliverySubMenuOpen]= useState(false);
+    const [innPurchaseSubMenuOpen, setInnPurchaseSubMenuOpen] = useState(false);
+    const [salesReportSubMenuOpen, setSalesReportSubMenuOpen] = useState(false);
+    const [purReturnSubMenuOpen, setPurReturnSubMenuOpen] = useState(false);
+    const [salesReturnSubMenuOpen, setSalesReturnSubMenuOpen] = useState(false);
+    const [bestInSubMenuOpen, setBestInSubMenuOpen] = useState(false);
+    const [comparisionSubMenuOpen, setComparisionSubMenuOpen] = useState(false);
+    const [deliverySubMenuOpen, setDeliverySubMenuOpen] = useState(false);
 
-    const toggleMenu = (menu:any) => {
+    const toggleMenu = (menu: any) => {
         if (menu === 'basic') {
             setBasicSubMenuOpen(!basicSubMenuOpen);
-            setUserSubMenuOpen(false); 
+            setUserSubMenuOpen(false);
             setPurchaseSubMenuOpen(false);
             setStockSubMenuOpen(false);
             setSalesSubMenuOpen(false);
@@ -83,13 +83,13 @@ const Sidebar = () => {
             setPivotSubMenuOpen(false);
             setOrderSubMenuOpen(false);
             setDeliverySubMenuOpen(false);
-        } 
+        }
         // else if (menu === 'advanced') {
         //     setUserSubMenuOpen(!userSubMenuOpen);
-        //     setBasicSubMenuOpen(false); 
+        //     setBasicSubMenuOpen(false);
         //     setPurchaseSubMenuOpen(false);
-        // } 
-        else if( menu === 'purchase'){
+        // }
+        else if (menu === 'purchase') {
             setPurchaseSubMenuOpen(!purchaseSubMenuOpen);
             setUserSubMenuOpen(false);
             setStockSubMenuOpen(false);
@@ -105,8 +105,7 @@ const Sidebar = () => {
             setInnPurchaseSubMenuOpen(false);
             setPurReturnSubMenuOpen(false);
             setDeliverySubMenuOpen(false);
-        }
-        else if( menu === 'stock'){
+        } else if (menu === 'stock') {
             setStockSubMenuOpen(!stockSubMenuOpen);
             setBasicSubMenuOpen(false);
             setUserSubMenuOpen(false);
@@ -121,11 +120,10 @@ const Sidebar = () => {
             setPivotSubMenuOpen(false);
             setOrderSubMenuOpen(false);
             setDeliverySubMenuOpen(false);
-        }
-        else if( menu === 'sales'){
+        } else if (menu === 'sales') {
             setSalesSubMenuOpen(!salesSubMenuOpen);
             setBasicSubMenuOpen(false);
-            setUserSubMenuOpen(false); 
+            setUserSubMenuOpen(false);
             setPurchaseSubMenuOpen(false);
             setStockSubMenuOpen(false);
             setChartsSubMenuOpen(false);
@@ -138,10 +136,9 @@ const Sidebar = () => {
             setOrderSubMenuOpen(false);
             setDeliverySubMenuOpen(false);
             setSalesReportSubMenuOpen(false);
-        }
-        else if( menu === 'charts'){
+        } else if (menu === 'charts') {
             setChartsSubMenuOpen(!chartsSubMenuOpen);
-            setUserSubMenuOpen(false); 
+            setUserSubMenuOpen(false);
             setPurchaseSubMenuOpen(false);
             setStockSubMenuOpen(false);
             setSalesSubMenuOpen(false);
@@ -153,10 +150,9 @@ const Sidebar = () => {
             setPivotSubMenuOpen(false);
             setOrderSubMenuOpen(false);
             setDeliverySubMenuOpen(false);
-        }
-        else if( menu === 'account'){
+        } else if (menu === 'account') {
             setAccountSubMenuOpen(!accountSubMenuOpen);
-            setUserSubMenuOpen(false); 
+            setUserSubMenuOpen(false);
             setPurchaseSubMenuOpen(false);
             setStockSubMenuOpen(false);
             setSalesSubMenuOpen(false);
@@ -168,10 +164,9 @@ const Sidebar = () => {
             setPivotSubMenuOpen(false);
             setOrderSubMenuOpen(false);
             setDeliverySubMenuOpen(false);
-        }
-        else if( menu === 'stock_transfer'){
+        } else if (menu === 'stock_transfer') {
             setStransferSubMenuOpen(!stransferSubMenuOpen);
-            setUserSubMenuOpen(false); 
+            setUserSubMenuOpen(false);
             setPurchaseSubMenuOpen(false);
             setStockSubMenuOpen(false);
             setSalesSubMenuOpen(false);
@@ -183,10 +178,9 @@ const Sidebar = () => {
             setPivotSubMenuOpen(false);
             setOrderSubMenuOpen(false);
             setDeliverySubMenuOpen(false);
-        }
-        else if( menu === 'gst'){
+        } else if (menu === 'gst') {
             setGstSubMenuOpen(!gstSubMenuOpen);
-            setUserSubMenuOpen(false); 
+            setUserSubMenuOpen(false);
             setPurchaseSubMenuOpen(false);
             setStockSubMenuOpen(false);
             setSalesSubMenuOpen(false);
@@ -198,10 +192,9 @@ const Sidebar = () => {
             setPivotSubMenuOpen(false);
             setOrderSubMenuOpen(false);
             setDeliverySubMenuOpen(false);
-        }
-        else if( menu === 'gst_return'){
+        } else if (menu === 'gst_return') {
             setGstReturnSubMenuOpen(!gstReturnSubMenuOpen);
-            setUserSubMenuOpen(false); 
+            setUserSubMenuOpen(false);
             setPurchaseSubMenuOpen(false);
             setStockSubMenuOpen(false);
             setSalesSubMenuOpen(false);
@@ -213,10 +206,9 @@ const Sidebar = () => {
             setPivotSubMenuOpen(false);
             setOrderSubMenuOpen(false);
             setDeliverySubMenuOpen(false);
-        }
-        else if( menu === 'emp_sch'){
+        } else if (menu === 'emp_sch') {
             setEmpSubMenuOpen(!empSubMenuOpen);
-            setUserSubMenuOpen(false); 
+            setUserSubMenuOpen(false);
             setPurchaseSubMenuOpen(false);
             setStockSubMenuOpen(false);
             setSalesSubMenuOpen(false);
@@ -228,10 +220,9 @@ const Sidebar = () => {
             setPivotSubMenuOpen(false);
             setOrderSubMenuOpen(false);
             setDeliverySubMenuOpen(false);
-        }
-        else if( menu === 'pivot_rep'){
+        } else if (menu === 'pivot_rep') {
             setPivotSubMenuOpen(!pivotSubMenuOpen);
-            setUserSubMenuOpen(false); 
+            setUserSubMenuOpen(false);
             setPurchaseSubMenuOpen(false);
             setStockSubMenuOpen(false);
             setSalesSubMenuOpen(false);
@@ -243,10 +234,9 @@ const Sidebar = () => {
             setEmpSubMenuOpen(false);
             setOrderSubMenuOpen(false);
             setDeliverySubMenuOpen(false);
-        }
-        else if( menu === 'order'){
+        } else if (menu === 'order') {
             setOrderSubMenuOpen(!orderSubMenuOpen);
-            setUserSubMenuOpen(false); 
+            setUserSubMenuOpen(false);
             setPurchaseSubMenuOpen(false);
             setStockSubMenuOpen(false);
             setSalesSubMenuOpen(false);
@@ -257,35 +247,30 @@ const Sidebar = () => {
             setGstReturnSubMenuOpen(false);
             setEmpSubMenuOpen(false);
             setDeliverySubMenuOpen(false);
-        }
-        else if( menu === 'inn_purchase'){
+        } else if (menu === 'inn_purchase') {
             setInnPurchaseSubMenuOpen(!innPurchaseSubMenuOpen);
             setPurchaseSubMenuOpen(true);
             // setPurReturnSubMenuOpen{false};
             setPurReturnSubMenuOpen(false);
-        }
-        else if( menu === 'pur_return'){
+        } else if (menu === 'pur_return') {
             setPurReturnSubMenuOpen(!purReturnSubMenuOpen);
             setPurchaseSubMenuOpen(true);
             setInnPurchaseSubMenuOpen(false);
-        }
-        else if( menu === 'inn_sales'){
+        } else if (menu === 'inn_sales') {
             setSalesReportSubMenuOpen(!salesReportSubMenuOpen);
             setSalesSubMenuOpen(true);
             // setPurReturnSubMenuOpen{false};
             setPurReturnSubMenuOpen(false);
             setSalesReturnSubMenuOpen(false);
             setBestInSubMenuOpen(false);
-        }
-        else if( menu === 'sales_return'){
+        } else if (menu === 'sales_return') {
             setSalesReturnSubMenuOpen(!salesReturnSubMenuOpen);
             setSalesReportSubMenuOpen(false);
             setSalesSubMenuOpen(true);
             // setPurReturnSubMenuOpen{false};
             setPurReturnSubMenuOpen(false);
             setBestInSubMenuOpen(false);
-        }
-        else if( menu === 'best_in'){
+        } else if (menu === 'best_in') {
             setBestInSubMenuOpen(!bestInSubMenuOpen);
             setSalesReportSubMenuOpen(false);
             setSalesReturnSubMenuOpen(false);
@@ -293,8 +278,7 @@ const Sidebar = () => {
             // setPurReturnSubMenuOpen{false};
             setPurReturnSubMenuOpen(false);
             setComparisionSubMenuOpen(false);
-        }
-        else if( menu === 'comparision'){
+        } else if (menu === 'comparision') {
             setComparisionSubMenuOpen(!comparisionSubMenuOpen);
             setSalesReportSubMenuOpen(false);
             setSalesReturnSubMenuOpen(false);
@@ -302,10 +286,9 @@ const Sidebar = () => {
             setBestInSubMenuOpen(false);
             // setPurReturnSubMenuOpen{false};
             setPurReturnSubMenuOpen(false);
-        }
-        else if( menu === 'del_challan'){
+        } else if (menu === 'del_challan') {
             setDeliverySubMenuOpen(!deliverySubMenuOpen);
-            setUserSubMenuOpen(false); 
+            setUserSubMenuOpen(false);
             setPurchaseSubMenuOpen(false);
             setStockSubMenuOpen(false);
             setSalesSubMenuOpen(false);
@@ -316,29 +299,28 @@ const Sidebar = () => {
             setGstReturnSubMenuOpen(false);
             setEmpSubMenuOpen(false);
             setOrderSubMenuOpen(false);
+        } else {
+            setCurrentMenu(currentMenu === menu ? null : menu);
+            setUserSubMenuOpen(false);
+            setBasicSubMenuOpen(false);
+            setPurchaseSubMenuOpen(false);
+            setStockSubMenuOpen(false);
+            setSalesSubMenuOpen(false);
+            setChartsSubMenuOpen(false);
+            setAccountSubMenuOpen(false);
+            setStransferSubMenuOpen(false);
+            setGstSubMenuOpen(false);
+            setGstReturnSubMenuOpen(false);
+            setEmpSubMenuOpen(false);
+            setPivotSubMenuOpen(false);
+            setOrderSubMenuOpen(false);
+            setInnPurchaseSubMenuOpen(false);
+            setPurReturnSubMenuOpen(false);
+            setDeliverySubMenuOpen(false);
+            setSalesReportSubMenuOpen(false);
         }
-        else {
-                    setCurrentMenu(currentMenu === menu ? null : menu);
-                    setUserSubMenuOpen(false); 
-                    setBasicSubMenuOpen(false); 
-                    setPurchaseSubMenuOpen(false);
-                    setStockSubMenuOpen(false);
-                    setSalesSubMenuOpen(false);
-                    setChartsSubMenuOpen(false);
-                    setAccountSubMenuOpen(false)
-                    setStransferSubMenuOpen(false);
-                    setGstSubMenuOpen(false);
-                    setGstReturnSubMenuOpen(false);
-                    setEmpSubMenuOpen(false);
-                    setPivotSubMenuOpen(false);
-                    setOrderSubMenuOpen(false);
-                    setInnPurchaseSubMenuOpen(false);
-                    setPurReturnSubMenuOpen(false);
-                    setDeliverySubMenuOpen(false);
-                    setSalesReportSubMenuOpen(false);
-                }
     };
-   
+
     useEffect(() => {
         const storedBasicSubMenuState = localStorage.getItem('basicSubMenuOpen');
         const storedUserSubMenuState = localStorage.getItem('userSubMenuOpen');
@@ -386,32 +368,32 @@ const Sidebar = () => {
             setGstSubMenuOpen(storedsGstSubMenuState === 'true');
         }
         if (storedsGstReturnSubMenuState) {
-        setGstReturnSubMenuOpen(storedsGstReturnSubMenuState === 'true');
+            setGstReturnSubMenuOpen(storedsGstReturnSubMenuState === 'true');
         }
         if (storedsEmpSubMenuState) {
             setEmpSubMenuOpen(storedsEmpSubMenuState === 'true');
-            }
-            if (storedsPivotSubMenuState) {
-                setPivotSubMenuOpen(storedsPivotSubMenuState === 'true');
-                }
-                if (storedsinnPurchaseSubMenuState) {
-                    setInnPurchaseSubMenuOpen(storedsinnPurchaseSubMenuState === 'true');
-                    }
-                    if (storedsPurReturnSubMenuState) {
-                        setPurReturnSubMenuOpen(storedsPurReturnSubMenuState === 'true');
-                        }
-                        if (storedsSalesReportSubMenuState) {
-                            setSalesReportSubMenuOpen(storedsSalesReportSubMenuState === 'true');
-                            }
-                            if (storedsSalesReturnSubMenuState) {
-                                setSalesReturnSubMenuOpen(storedsSalesReturnSubMenuState === 'true');
-                                }
-                                if (storedsBestInSubMenuState) {
-                                    setBestInSubMenuOpen(storedsBestInSubMenuState === 'true');
-                                    }
-                                    if (storedsComparisionSubMenuState) {
-                                        setComparisionSubMenuOpen(storedsComparisionSubMenuState === 'true');
-                                        }
+        }
+        if (storedsPivotSubMenuState) {
+            setPivotSubMenuOpen(storedsPivotSubMenuState === 'true');
+        }
+        if (storedsinnPurchaseSubMenuState) {
+            setInnPurchaseSubMenuOpen(storedsinnPurchaseSubMenuState === 'true');
+        }
+        if (storedsPurReturnSubMenuState) {
+            setPurReturnSubMenuOpen(storedsPurReturnSubMenuState === 'true');
+        }
+        if (storedsSalesReportSubMenuState) {
+            setSalesReportSubMenuOpen(storedsSalesReportSubMenuState === 'true');
+        }
+        if (storedsSalesReturnSubMenuState) {
+            setSalesReturnSubMenuOpen(storedsSalesReturnSubMenuState === 'true');
+        }
+        if (storedsBestInSubMenuState) {
+            setBestInSubMenuOpen(storedsBestInSubMenuState === 'true');
+        }
+        if (storedsComparisionSubMenuState) {
+            setComparisionSubMenuOpen(storedsComparisionSubMenuState === 'true');
+        }
     }, []);
 
     useEffect(() => {
@@ -433,12 +415,31 @@ const Sidebar = () => {
         localStorage.setItem('bestInSubMenuOpen', bestInSubMenuOpen.toString());
         localStorage.setItem('comparisionSubMenuOpen', comparisionSubMenuOpen.toString());
         localStorage.setItem('salesReportSubMenuOpen', salesReportSubMenuOpen.toString());
-    }, [basicSubMenuOpen, userSubMenuOpen, purchaseSubMenuOpen, stockSubMenuOpen, salesSubMenuOpen,chartsSubMenuOpen, accountSubMenuOpen, stransferSubMenuOpen, gstSubMenuOpen, gstReturnSubMenuOpen,empSubMenuOpen, pivotSubMenuOpen, innPurchaseSubMenuOpen, purReturnSubMenuOpen,salesReportSubMenuOpen,salesReturnSubMenuOpen,bestInSubMenuOpen,comparisionSubMenuOpen]);
+    }, [
+        basicSubMenuOpen,
+        userSubMenuOpen,
+        purchaseSubMenuOpen,
+        stockSubMenuOpen,
+        salesSubMenuOpen,
+        chartsSubMenuOpen,
+        accountSubMenuOpen,
+        stransferSubMenuOpen,
+        gstSubMenuOpen,
+        gstReturnSubMenuOpen,
+        empSubMenuOpen,
+        pivotSubMenuOpen,
+        innPurchaseSubMenuOpen,
+        purReturnSubMenuOpen,
+        salesReportSubMenuOpen,
+        salesReturnSubMenuOpen,
+        bestInSubMenuOpen,
+        comparisionSubMenuOpen,
+    ]);
     // useEffect(() => {
     //     setBasicSubMenuOpen(false);
     //     setUserSubMenuOpen(false);
     // }, []);
-    
+
     useEffect(() => {
         const selector = document.querySelector('.sidebar ul a[href="' + window.location.pathname + '"]');
         if (selector) {
@@ -465,9 +466,9 @@ const Sidebar = () => {
     const navigate = useNavigate();
     const handleLogout = () => {
         // Perform logout actions here (e.g., clearing authentication token, resetting state)
-       // Then redirect to login page
-       navigate('/', { replace: true }); // Use replace option to prevent going back
-   };
+        // Then redirect to login page
+        navigate('/', { replace: true }); // Use replace option to prevent going back
+    };
 
     return (
         <div className={semidark ? 'dark' : ''}>
@@ -921,8 +922,7 @@ const Sidebar = () => {
     </AnimateHeight>
 </li> */}
 
-
-<li className="menu nav-item">
+                            <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'web' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('web')}>
                                     <div className="flex items-center">
                                         <IconMenuPages className="group-hover:!text-primary shrink-0" />
@@ -938,42 +938,39 @@ const Sidebar = () => {
                                         {/* <li>
                                             <NavLink to="/pages/knowledge-base">{t('knowledge_base')}</NavLink>
                                         </li> */}
-                                       <li>
-                                                                    <NavLink to="/components/discountcoupon">Item Setting</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Item Rate Calculation</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Rate Code</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Print Margin</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">SMS Sending</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">HSN Code</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Sale Price Discount</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Category</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Mark Up/Down</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Refresh</NavLink>
-                                                                </li>
-  
-                                        
+                                        <li>
+                                            <NavLink to="/components/itemsettings">Item Setting</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/itemrate">Item Rate Calculation</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/itemsettings">Rate Code</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Print Margin</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">SMS Sending</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">HSN Code</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Sale Price Discount</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Category</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Mark Up/Down</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Refresh</NavLink>
+                                        </li>
                                     </ul>
-                                </AnimateHeight>                               
+                                </AnimateHeight>
                             </li>
-
 
                             <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'datalabel' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('datalabel')}>
@@ -1055,51 +1052,31 @@ const Sidebar = () => {
                                 <li>
                                     <NavLink to="/datatables/frmCodeType">CodeType</NavLink>
                                 </li>   */}
-                                                  
                                                 </ul>
-
                                             </AnimateHeight>
                                         </li>
                                         <li>
-                                                        <NavLink to="/components/agentmaster">Agent</NavLink>
-                                                    </li>
-                                                    <li>
-                                                        <NavLink to="/components/customermaster">Customers</NavLink>
-                                                    </li>
-                                                   
-                                                    <li>
-                                                        <NavLink to="/components/dealer">Dealers</NavLink>
-                                                    </li>
-                                                    <li>
-                                                        <NavLink to="/components/employee">Employees</NavLink>
-                                                    </li>
-                                                    <li>
-                                                        <NavLink to="/components/item">Items</NavLink>
-                                                    </li>
-                                                    <li>
-                                                        <NavLink to="/components/user">User</NavLink>
-                                                    </li>
-                                       
-                                       
-                                      
+                                            <NavLink to="/components/agentmaster">Agent</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/customermaster">Customers</NavLink>
+                                        </li>
 
-                                      
-                                       
-                                     
-                                      
-                                        
-                                       
-                                      
-                                      
-                                        
-                                  
+                                        <li>
+                                            <NavLink to="/components/dealer">Dealers</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/employee">Employees</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/item">Items</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/user">User</NavLink>
+                                        </li>
                                     </ul>
                                 </AnimateHeight>
                             </li>
-
-
-
-
 
                             <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'pur' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('pur')}>
@@ -1117,22 +1094,22 @@ const Sidebar = () => {
                                         {/* <li>
                                             <NavLink to="/pages/knowledge-base">{t('knowledge_base')}</NavLink>
                                         </li> */}
-                                                                <li>
-                                                                    <NavLink to="/components/discountcoupon">Entry</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Search</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/discountcoupon">Return</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/discountcoupon">Search</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/discountcoupon">Barcode</NavLink>
-                                                                </li>
-  
+                                        <li>
+                                            <NavLink to="/components/purchaseentry">Entry</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Search</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/discountcoupon">Return</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/purchasesearch">Search</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/customermaster">Barcode</NavLink>
+                                        </li>
+
                                         {/* <li className="menu nav-item">
                                             
                                             <AnimateHeight duration={300} height={errorSubMenu ? 'auto' : 0}>
@@ -1158,12 +1135,7 @@ const Sidebar = () => {
                                         </li> */}
                                     </ul>
                                 </AnimateHeight>
-
-                               
                             </li>
-
-
-
 
                             <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'sto' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('sto')}>
@@ -1181,34 +1153,34 @@ const Sidebar = () => {
                                         {/* <li>
                                             <NavLink to="/pages/knowledge-base">{t('knowledge_base')}</NavLink>
                                         </li> */}
-                                       <li>
-                                                                    <NavLink to="/components/stockview">Stock View</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/openingstock">Opening Stock</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/stockservice">Transfer Stock and Series</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/stockverification">Stock Verification</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components">Stock Verification Search</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/stockinward">Stock Inward</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/stockinwardsearch">Stock Inward Search</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/stockoutward">Stock Outward</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/stockoutwardsearch">Stock Outward Search</NavLink>
-                                                                </li>
-  
+                                        <li>
+                                            <NavLink to="/components/stockview">Stock View</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/openingstock">Opening Stock</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/stockservice">Transfer Stock and Series</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/stockverification">Stock Verification</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components">Stock Verification Search</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/stockinward">Stock Inward</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/stockinwardsearch">Stock Inward Search</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/stockoutward">Stock Outward</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/stockoutwardsearch">Stock Outward Search</NavLink>
+                                        </li>
+
                                         {/* <li className="menu nav-item">
                                             
                                             <AnimateHeight duration={300} height={errorSubMenu ? 'auto' : 0}>
@@ -1234,11 +1206,7 @@ const Sidebar = () => {
                                         </li> */}
                                     </ul>
                                 </AnimateHeight>
-
-                               
                             </li>
-
-
 
                             <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'sal' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('sal')}>
@@ -1256,23 +1224,22 @@ const Sidebar = () => {
                                         {/* <li>
                                             <NavLink to="/pages/knowledge-base">{t('knowledge_base')}</NavLink>
                                         </li> */}
-                                       <li>
-                                                                    <NavLink to="/components/discountcoupon">Entry</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Search</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Detail Search</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Return</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Search</NavLink>
-                                                                </li>
-                                                                
-  
+                                        <li>
+                                            <NavLink to="/components/entry">Entry</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/SearchSales">Search</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/salesdetailsearch">Detail Search</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/salesreturn">Return</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Search</NavLink>
+                                        </li>
+
                                         {/* <li className="menu nav-item">
                                             
                                             <AnimateHeight duration={300} height={errorSubMenu ? 'auto' : 0}>
@@ -1298,12 +1265,7 @@ const Sidebar = () => {
                                         </li> */}
                                     </ul>
                                 </AnimateHeight>
-
-                               
                             </li>
-
-
-
 
                             <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'datala' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('datala')}>
@@ -1318,7 +1280,7 @@ const Sidebar = () => {
 
                                 <AnimateHeight duration={300} height={currentMenu === 'datala' || basicSubMenuOpen ? 'auto' : 0}>
                                     <ul className="sub-menu text-gray-500">
-                                    <li>
+                                        <li>
                                             <button type="button" className={`${stockSubMenuOpen ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('stock')}>
                                                 <div className="flex items-center">
                                                     <IconMenuDatatables className="group-hover:!text-primary shrink-0" />
@@ -1332,17 +1294,99 @@ const Sidebar = () => {
                                             <AnimateHeight duration={300} height={stockSubMenuOpen ? 'auto' : 0}>
                                                 <ul className="sub-menu text-gray-500">
                                                     <li>
-                                                        <NavLink to="/components/agentreport">Agent</NavLink>
+                                                        <NavLink to="/components/reportfromstock?page=agent">Agent</NavLink>
                                                     </li>
                                                     <li>
-                                                        <NavLink to="/stockTables/brandItem">Customer</NavLink>
+                                                        <NavLink to="/components/reportfromstock?page=customer">Customer</NavLink>
                                                     </li>
                                                     <li>
-                                                        <NavLink to="/stockTables/itemBrand">Dealer</NavLink>
+                                                        <NavLink to="/components/dealerreport">Dealer</NavLink>
                                                     </li>
                                                     <li>
-                                                        <NavLink to="/stockTables/itemSize">Employee</NavLink>
+                                                        <NavLink to="/components/employeereport">Employee</NavLink>
                                                     </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/masterInput">Search</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=brand">Brand</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=formName">FromName</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=control">Control</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=c_name">C_Name</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=c_type">C_Type</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=c_value">C_Value</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=c_sequence">Sequence</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=c_label">Label</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=c_agent">Agent</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=product">Product</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=buyer">Buyer</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=colour">Colour</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=scolor">SColor</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=category">Category</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=subCategory">Sub Category</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=group">Group</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=subGroup">Sub Group</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=material">Material</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=size">Size</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=style">Style</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=section">Section</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=season">Season</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=unit">Unit</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=packing">Packing</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=gender">Gender</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/datatables/frmCodeType?category=tag">Tag</NavLink>
+                                                    </li>
+
                                                     {/* <li>
                                                         <NavLink to="/stockTables/stockMovement">Stock Movement</NavLink>
                                                     </li>
@@ -1395,28 +1439,28 @@ const Sidebar = () => {
                                                         <AnimateHeight duration={300} height={innPurchaseSubMenuOpen ? 'auto' : 0}>
                                                             <ul className="sub-menu text-gray-500">
                                                                 <li>
-                                                                    <NavLink to="#">Purchase Detail</NavLink>
+                                                                    <NavLink to="/components/purchasedetail">Purchase Detail</NavLink>
                                                                 </li>
                                                                 <li>
-                                                                    <NavLink to="#">Purchase Register</NavLink>
+                                                                    <NavLink to="/components/purchaseregister">Purchase Register</NavLink>
                                                                 </li>
                                                                 {/* <li>
                                                                     <NavLink to="#">Purchase Detail</NavLink>
                                                                 </li> */}
                                                                 <li>
-                                                                    <NavLink to="#">Purchase Summary</NavLink>
+                                                                    <NavLink to="/components/purchasesummary">Purchase Summary</NavLink>
                                                                 </li>
                                                                 <li>
-                                                                    <NavLink to="#">Purchase Group Wise</NavLink>
+                                                                    <NavLink to="/components/purchasegroupwise">Purchase Group Wise</NavLink>
                                                                 </li>
                                                                 <li>
-                                                                    <NavLink to="#">Dealer Wise Purchase</NavLink>
+                                                                    <NavLink to="/components/dealerwisepurchase">Dealer Wise Purchase</NavLink>
                                                                 </li>
                                                                 <li>
-                                                                    <NavLink to="#">Dealer Wise Purchase Detail</NavLink>
+                                                                    <NavLink to="/components/dealerwisepurchasedetails">Dealer Wise Purchase Detail</NavLink>
                                                                 </li>
                                                                 <li>
-                                                                    <NavLink to="#">Dealer Wise Purchase Comparison</NavLink>
+                                                                    <NavLink to="/components/dealerwisepurchasecomparison">Dealer Wise Purchase Comparison</NavLink>
                                                                 </li>
                                                                 {/* <li>
                                                                     <NavLink to="#">Best Purchase Brand</NavLink>
@@ -1442,7 +1486,6 @@ const Sidebar = () => {
                                                             </ul>
                                                         </AnimateHeight>
                                                     </li>
-                                                   
 
                                                     {/* <li>
                                     <NavLink to="#">Purchase Master</NavLink>
@@ -1454,47 +1497,35 @@ const Sidebar = () => {
                                             </AnimateHeight>
                                         </li>
                                         <li>
-                                                                    <NavLink to="/components/customermaster">Stock</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/customermaster">Sales</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/customermaster">Chart</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/customermaster">Account</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/customermaster">Stock Transfer</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/customermaster">GST</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/customermaster">GST Transfer</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/customermaster">Employee Scheems</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/customermaster">Pivot Report</NavLink>
-                                                                </li>
-
-
-
-                                   
-                              
-           
+                                            <NavLink to="/components/customermaster">Stock</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/customermaster">Sales</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/customermaster">Chart</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/customermaster">Account</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/customermaster">Stock Transfer</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/customermaster">GST</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/customermaster">GST Transfer</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/customermaster">Employee Scheems</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/customermaster">Pivot Report</NavLink>
+                                        </li>
                                     </ul>
                                 </AnimateHeight>
-                                
                             </li>
-                            
-
-
-
-
 
                             <li className="menu nav-item">
                                 <NavLink to="/components/aboutus" className="group">
@@ -1505,7 +1536,6 @@ const Sidebar = () => {
                                 </NavLink>
                             </li>
 
-
                             <li className="menu nav-item">
                                 <NavLink to="/components/contactus" className="group">
                                     <div className="flex items-center">
@@ -1515,17 +1545,6 @@ const Sidebar = () => {
                                 </NavLink>
                             </li>
 
-
-
-
-
-
-
-
-
-
-
-                          
                             {/* <li className="menu nav-item">
                                 <NavLink to="/Components/HideSeek" className="group">
                                     <div className="flex items-center">
@@ -1549,15 +1568,31 @@ const Sidebar = () => {
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Item-Master')}</span>
                                     </div>
                                 </NavLink>
-                            </li>
+                            </li>*/}
                             <li className="menu nav-item">
-                                <NavLink to="/Components/remotefrommaster" className="group">
+                                <NavLink to="/Components/remotefromMaster" className="group">
                                     <div className="flex items-center">
                                         <IconMenuTables className="group-hover:!text-primary shrink-0" />
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Remote From Master')}</span>
                                     </div>
                                 </NavLink>
-                            </li> */}
+                            </li>
+                            {/* <li className="menu nav-item">
+                                <NavLink to="/components/reportfromstock" className="group">
+                                    <div className="flex items-center">
+                                        <IconMenuTables className="group-hover:!text-primary shrink-0" />
+                                        <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Report From Stock')}</span>
+                                    </div>
+                                </NavLink>
+                            </li>  */}
+                            <li className="menu nav-item">
+                                <NavLink to="/components/formMaster" className="group">
+                                    <div className="flex items-center">
+                                        <IconMenuTables className="group-hover:!text-primary shrink-0" />
+                                        <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Form Master')}</span>
+                                    </div>
+                                </NavLink>
+                            </li>
                             {/* <li className="menu nav-item">
                                 <NavLink to="/components/exchange-policy" className="group">
                                     <div className="flex items-center">
@@ -1614,7 +1649,6 @@ const Sidebar = () => {
                                     </div>
                                 </NavLink>
                             </li> */}
-
 
                             {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'dash' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('dash')}>
@@ -1717,8 +1751,6 @@ const Sidebar = () => {
 
                                
                             </li> */}
-
-                           
 
                             <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />

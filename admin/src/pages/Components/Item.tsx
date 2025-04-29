@@ -1,5 +1,73 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { BASE_URL } from "../../config";
+
+interface ItemType {
+  COMPANYID:number;
+  ITEMID: number;
+  PHOTO: string;
+  BARCODE: string;
+  ITEMNAME: string;
+  LOOKUP: string;
+  PRODUCT:string;
+  BRAND:string;
+  DESCRIPTION:string;
+  I_SIZE:string;
+  COLOR:string;
+  STYLE:string;
+  UNIT:string;
+  CATEGORY: string;
+  RATE: number;
+  TAX: number;
+  PURPRICE: number;
+  MRP: number;
+  SALEPRICE: number;
+  SP1: number;
+  SP2: number;
+  SP3: number;
+  SP4: number;
+  STATUS: string;
+  REMARK:string;
+  CREATEDBY: string;
+  CREATEDON: string;
+  UPDATEDBY: string;
+  UPDATEDON: string;
+  CUSTOME: string;
+  DEALERID:number;
+  DEALERNAME: string;
+  BUYER:string;
+  SEASON:string;
+  GENDER:string;
+  SCOLOR:string;
+  MATERIAL:string;
+  COMPANY:string;
+  SUBGROUP:string;
+  BOXSIZE: string;
+  HSNCODE: string;
+  // Add other fields as needed
+}
+
 const Item = () => {
+  const [items, setItems] = useState<ItemType[]>([]);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const res = await axios.get(`${BASE_URL}/getItem`, {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // If you are using JWT
+          },
+        });
+        setItems(res.data);
+      } catch (error) {
+        console.error("Failed to fetch items", error);
+      }
+    };
+
+    fetchItems();
+  }, []);
+
   return (
     <div className="bg-white text-gray-800 font-sans">
       <div className="p-4">
@@ -59,80 +127,155 @@ const Item = () => {
             Search
           </button>
         </form>
+
+        {/* Search Form (remains the same) */}
+
         <div className="overflow-x-auto border border-gray-300 rounded">
           <table className="min-w-max w-full border-collapse">
             <thead>
               <tr className="bg-gray-100">
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">ItemId</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Image File Name</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">BarCode</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">ItemName</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Look Up</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Category</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Rate</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Tax</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Pur. Price</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Mrp</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Sale Price</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Sp1</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Sp2</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Sp3</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Sp4</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Status</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">CreatedBy</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">CreatedOn</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">UpdatedBy</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">UpdatedOn</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Custome</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Dealer Name</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Box Size</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">HSN Code</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field1</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field2</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field3</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field4</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field5</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field6</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field7</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field8</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field9</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field10</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field11</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field12</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field13</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field14</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field15</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field16</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field17</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field18</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field19</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field20</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field21</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field22</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field23</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field24</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field25</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field26</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field27</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field28</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field29</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field30</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field31</th>
-                <th className="border border-blue-700 px-2 py-1 whitespace-nowrap">Field32</th>
+              <th className="border border-blue-700 px-2 py-1">Company Id</th>
+
+                <th className="border border-blue-700 px-2 py-1">ItemId</th>
+                {/* <th className="border border-blue-700 px-2 py-1">Image</th> */}
+                <th className="border border-blue-700 px-2 py-1">BarCode</th>
+                <th className="border border-blue-700 px-2 py-1">ItemName</th>
+                <th className="border border-blue-700 px-2 py-1">Lookup</th>
+                <th className="border border-blue-700 px-2 py-1">Product</th>
+                <th className="border border-blue-700 px-2 py-1">Brand</th>
+                <th className="border border-blue-700 px-2 py-1">Description</th>
+                <th className="border border-blue-700 px-2 py-1">Size</th>
+                <th className="border border-blue-700 px-2 py-1">Colour</th>
+                <th className="border border-blue-700 px-2 py-1">Style</th>
+                <th className="border border-blue-700 px-2 py-1">Unit</th>
+                <th className="border border-blue-700 px-2 py-1">Category</th>
+                <th className="border border-blue-700 px-2 py-1">Rate</th>
+                <th className="border border-blue-700 px-2 py-1">Tax</th>
+                <th className="border border-blue-700 px-2 py-1">PurPrice</th>
+                <th className="border border-blue-700 px-2 py-1">MRP</th>
+                <th className="border border-blue-700 px-2 py-1">Status</th>
+                <th className="border border-blue-700 px-2 py-1">Remark</th>
+                <th className="border border-blue-700 px-2 py-1">Created By</th>
+                <th className="border border-blue-700 px-2 py-1">Created On</th>
+                <th className="border border-blue-700 px-2 py-1">Updated By</th>
+                <th className="border border-blue-700 px-2 py-1">Updated On</th>
+                <th className="border border-blue-700 px-2 py-1">CUSTOME</th>
+                <th className="border border-blue-700 px-2 py-1">Dealer Id</th>
+                <th className="border border-blue-700 px-2 py-1">Dealer Name</th>
+                <th className="border border-blue-700 px-2 py-1">Buyer</th>
+                <th className="border border-blue-700 px-2 py-1">Season</th>
+                <th className="border border-blue-700 px-2 py-1">Gender</th>
+                <th className="border border-blue-700 px-2 py-1">SColour</th>
+                <th className="border border-blue-700 px-2 py-1">Material</th>
+                <th className="border border-blue-700 px-2 py-1">Company</th>
+                <th className="border border-blue-700 px-2 py-1">SubGroup</th>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <th className="border border-blue-700 px-2 py-1">Sale Price</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="text-xs text-gray-700">
-                <td className="border border-gray-300 px-2 py-1 whitespace-nowrap" colSpan={26}>
-                  No data available in table
-                </td>
-              </tr>
+              {items.length === 0 ? (
+                <tr>
+                  <td colSpan={9} className="text-center text-sm py-2">
+                    No data available
+                  </td>
+                </tr>
+              ) : (
+                items.map((item) => (
+                  <tr key={item.ITEMID} className="text-xs text-gray-700">
+                    <td className="border border-gray-300 px-2 py-1">{item.COMPANYID}</td>
+                    
+                    <td className="border border-gray-300 px-2 py-1">{item.ITEMID}</td>
+                    {/* <td className="border border-gray-300 px-2 py-1">
+                      {item.PHOTO ? (
+                        <img
+                          src={item.PHOTO}
+                          alt="item"
+                          className="h-10 w-10 object-cover"
+                        />
+                      ) : (
+                        "No Image"
+                      )}
+                    </td> */}
+                    <td className="border border-gray-300 px-2 py-1">{item.BARCODE}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.ITEMNAME}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.LOOKUP}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.PRODUCT}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.BRAND}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.DESCRIPTION}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.I_SIZE}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.COLOR}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.STYLE}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.UNIT}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.CATEGORY}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.RATE}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.TAX}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.PURPRICE}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.MRP}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.STATUS}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.REMARK}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.CREATEDBY}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.CREATEDON}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.UPDATEDBY}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.UPDATEDON}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.CUSTOME}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.DEALERID}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.DEALERNAME}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.BUYER}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.SEASON}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.GENDER}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.SCOLOR}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.MATERIAL}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.COMPANY}</td>
+                    <td className="border border-gray-300 px-2 py-1">{item.SUBGROUP}</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <td className="border border-gray-300 px-2 py-1">{item.SALEPRICE}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
-        <div className="mt-2 text-xs text-gray-700">Showing 0 to 0 of 0 entries</div>
+
+        <div className="mt-2 text-xs text-gray-700">
+          Showing {items.length} entries
+        </div>
       </div>
-     </div>
+    </div>
   );
 };
+
 export default Item;
