@@ -30,6 +30,8 @@ import State from '../pages/Components/State';
 import Country from '../pages/Components/Country';
 import Title from '../pages/Components/Title';
 import ReasonOfReturn from '../pages/Components/ReasonOfReturn';
+import PrinterSettings from '../pages/Components/PrinterSettings';
+import BillNumberRange from '../pages/Components/BillNumberRange';
 import Location from '../pages/Components/Location';
 import District from '../pages/Components/District';
 import MaritalStatus from '../pages/Components/MaritalStatus';
@@ -48,27 +50,6 @@ import StockInwardSearch from '../pages/Components/StockInwardSearch';
 import StockOutward from '../pages/Components/StockOutward';
 import StockOutwardSearch from '../pages/Components/StockOutwardSearch';
 import AgentReport from '../pages/Components/AgentReport';
-import CustomerReport from '../pages/Components/CustomerReport';
-import DealerReport from '../pages/Components/DealerReport';
-import EmployeeReport from '../pages/Components/EmployeeReport';
-import PurchaseDetail from '../pages/Components/PurchaseDetail';
-import PurchaseGroupWise from '../pages/Components/PurchaseGroupWise';
-import PurchaseRegister from '../pages/Components/PurchaseRegister';
-import PurchaseSummary from '../pages/Components/PurchaseSummary';
-import DealerWisePurchase from '../pages/Components/DealerWisePurchase';
-import DealerWisePurchaseDetails from '../pages/Components/DealerWisePurchaseDetails';
-import DealerWisePurchaseComparison from '../pages/Components/DealerwisePurchaseComparison';
-import Entry from '../pages/Components/Entry';
-import ItemRate from '../pages/Components/ItemRate';
-import SearchSales from '../pages/Components/SearchSales';
-import SalesDetailSearch from '../pages/DataTables/DetailSearch';
-import DetailSearchList from '../pages/Components/DetailSearchList';
-import SalesReturn from '../pages/Components/SalesReturn';
-import ItemSettings from '../pages/Components/ItemSetting';
-import PurchaseSearch from '../pages/Components/PurchaseEntry';
-import PurchaseEntry from '../pages/Components/PurchaseEntry';
-import ReportFromStock from '../pages/Components/MasterReport';
-import FormMaster from '../pages/Components/FormMaster';
 // import ExchangePolicy from /ExchangePolicy';
 const Index = lazy(() => import('../pages/Index'));
 const Analytics = lazy(() => import('../pages/Analytics'));
@@ -323,6 +304,22 @@ const routes = [
     {
         path: '/components/sweetalert',
         element: <SweetAlert />,
+    },
+    {
+        path: '/components/SMSSending',
+        element: <SMSSending />,
+    },
+    {
+        path: '/components/ItemSettings',
+        element: <ItemSettings />,
+    },
+    {
+        path: '/components/MysqlOracle',
+        element: <MysqlOracle />,
+    },
+    {
+        path: '/components/Calculation',
+        element: <CalculationPage />,
     },
     {
         path: '/components/timeline',
@@ -612,18 +609,6 @@ const routes = [
     {
         path: '/components/worktype',
         element: <WorkType />,
-    },
-    {
-        path: '/components/purchaseentry',
-        element: <PurchaseEntry />,
-    },
-    {
-        path: '/components/reportfromstock',
-        element: <ReportFromStock />,
-    },
-    {
-        path: '/components/formMaster',
-        element: <FormMaster />,
     },
     // elements page
     {

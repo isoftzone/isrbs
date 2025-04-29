@@ -1,35 +1,35 @@
-// const express = require("express");
-// const con = require('../config')
+const express = require("express");
+const con = require('../config')
 
-//  exports.getCustomer = async (req, res) => {
-//     await con.query('SELECT * FROM customermaster', (err, result) => {
-//          if (err) {
-//              throw err;
-//          }
-//          res.json(result);
-//      });
-//  };
+ exports.getCustomer = async (req, res) => {
+    await con.query('SELECT * FROM customermaster', (err, result) => {
+         if (err) {
+             throw err;
+         }
+         res.json(result);
+     });
+ };
 
-//  exports.updateCustomerInfo = (req, res) => {
-//   const {
-//     FNAME,
-//     LNAME,
-//     email,
-//     customerId,
-//     MOBILE,
-//     CADDRESSLINE1,
-//     CCITY,
-//     CSTATE,
-//     CCOUNTRY,
-//     CDISTRICT,
-//     CPINCODE,
-//     password
-//   } = req.body;
+ exports.updateCustomerInfo = (req, res) => {
+  const {
+    FNAME,
+    LNAME,
+    email,
+    customerId,
+    MOBILE,
+    CADDRESSLINE1,
+    CCITY,
+    CSTATE,
+    CCOUNTRY,
+    CDISTRICT,
+    CPINCODE,
+    password
+  } = req.body;
 
 
-//   if (!customerId) {
-//     return res.status(400).json({ error: 'Customer ID is missing' });
-//   }
+  if (!customerId) {
+    return res.status(400).json({ error: 'Customer ID is missing' });
+  }
 
 //   // Build query
 //   const fields = [
@@ -227,103 +227,10 @@
 //             }
 
          
-//             res.status(200).send({ msg: 'customer updated successfully', updatedcustomer });
-//         });
-//     } catch (error) {
-//         console.error('Error editing customer:', error);
-//         res.status(500).send({ error: 'Internal Server Error' });
-//     }
-// };
-
-
-const express = require("express");
-const getTenantDB = require('../config');
-const util = require("util");
-const { Console } = require("console");
-exports.customerAdd = async(req, res) => {
-    const schemaName = req.schema;
-    const con = getTenantDB(schemaName);
-    const query = util.promisify(con.query).bind(con);
-    try {
-      const data = req.body;
-      await query('INSERT INTO customermaster SET ?', data);
-      res.status(200).json({ message: 'Data inserted successfully' });
-    } catch (err) {
-      console.error('Error inserting data:', err);
-      res.status(500).json({ error: 'Error inserting data into agentmaster table' });
-    } finally {
-      con.end(); // Close connection
+            res.status(200).send({ msg: 'customer updated successfully', updatedcustomer });
+        });
+    } catch (error) {
+        console.error('Error editing customer:', error);
+        res.status(500).send({ error: 'Internal Server Error' });
     }
-};
-// GET all records from agentmaster
-exports.getcustomerMaster = async (req, res) => {
-    const schemaName = req.schema;
-    const con = getTenantDB(schemaName);
-    const query = util.promisify(con.query).bind(con);
-    try {
-      const result = await query('SELECT * FROM customermaster');
-      console.log("this is fatch data: ", result)
-      res.json(result);
-    } catch (err) {
-      console.error("Error fetching customermaster:", err);
-      res.status(500).json({ error: "Internal Server Error" });
-    } finally {
-      con.end(); // Close connection
-    }
-  };
-  //  search api
-  // exports.searchcustomer = async(req, res) => {
-  //   const schemaName = req.schema;
-  //   const con = getTenantDB(schemaName);
-  //   const query = util.promisify(con.query).bind(con);
-  //   try {
-  //     const search = req.query.q; // use 'q' as the query param
-  //     const limit = parseInt(req.query.limit) || 10;
-  //     const offset = parseInt(req.query.offset) || 0;
-  //     if (!search) {
-  //       return res.status(400).json({ error: 'Missing search query' });
-  //     }
-  //     const searchTerm = `%${search}%`;
-  //     const sql = `
-  //       SELECT * FROM customermaster
-  //       WHERE
-  //         FIRMNAME LIKE ? OR
-  //         CUSTOMERNAME LIKE ? OR
-  //         CMOBILE LIKE ? LIMIT ? OFFSET ?
-  //     `;
-  //     const results = await query(sql, [searchTerm, searchTerm, searchTerm, limit, offset]);
-  //     res.status(200).json({ message: 'Search successful', results });
-  //   } catch (err) {
-  //     console.error('Search Error:', err);
-  //     res.status(500).json({ error: 'Error searching data in customer table' });
-  //   } finally {
-  //     con.end(); // Always close connection
-  //   }
-  // };
-  // http://localhost:3000/search?q=123654789
-exports.searchcustomer = async (req, res) => {
-  const schemaName = req.schema;
-  const con = getTenantDB(schemaName); // Multi-tenancy setup
-  const query = util.promisify(con.query).bind(con);
-  try {
-    let { CMOBILE = "", FIRMNAME = "" } = req.body;
-    console.log("Search terms:", CMOBILE);
-    const sql = `
-      SELECT * FROM customermaster
-      WHERE
-        CMOBILE LIKE ? OR
-        FIRMNAME LIKE ?
-    `;
-    const values = [
-      `%${CMOBILE}%`,
-      `%${FIRMNAME}%`,
-     ];
-    const results = await query(sql, values);
-    res.status(200).json({ message: 'Search successful', results });
-  } catch (err) {
-    console.error("Error:", err);
-    res.status(500).json({ error: 'Error searching data in customer table' });
-  } finally {
-    con.end();
-  }
 };

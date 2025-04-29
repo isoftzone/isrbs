@@ -938,36 +938,38 @@ const Sidebar = () => {
                                         {/* <li>
                                             <NavLink to="/pages/knowledge-base">{t('knowledge_base')}</NavLink>
                                         </li> */}
-                                        <li>
-                                            <NavLink to="/components/itemsettings">Item Setting</NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink to="/components/itemrate">Item Rate Calculation</NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink to="/components/itemsettings">Rate Code</NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink to="/components/refferalcoupan">Print Margin</NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink to="/components/refferalcoupan">SMS Sending</NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink to="/components/refferalcoupan">HSN Code</NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink to="/components/refferalcoupan">Sale Price Discount</NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink to="/components/refferalcoupan">Category</NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink to="/components/refferalcoupan">Mark Up/Down</NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink to="/components/refferalcoupan">Refresh</NavLink>
-                                        </li>
+                                       <li>
+                                                                    <NavLink to="/components/discountcoupon">Item Setting</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/refferalcoupan">Item Rate Calculation</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/refferalcoupan">Rate Code</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/refferalcoupan">Print Margin</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/refferalcoupan">SMS Sending</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/refferalcoupan">HSN Code</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/refferalcoupan">Sale Price Discount</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/refferalcoupan">Category</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/refferalcoupan">Mark Up/Down</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="/components/refferalcoupan">Refresh</NavLink>
+                                                                </li>
+  
+                                        
                                     </ul>
                                 </AnimateHeight>
                             </li>
@@ -1568,31 +1570,15 @@ const Sidebar = () => {
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Item-Master')}</span>
                                     </div>
                                 </NavLink>
-                            </li>*/}
-                            <li className="menu nav-item">
-                                <NavLink to="/Components/remotefromMaster" className="group">
-                                    <div className="flex items-center">
-                                        <IconMenuTables className="group-hover:!text-primary shrink-0" />
-                                        <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Remote From Master')}</span>
-                                    </div>
-                                </NavLink>
                             </li>
-                            {/* <li className="menu nav-item">
-                                <NavLink to="/components/reportfromstock" className="group">
+                            <li className="menu nav-item">
+                                <NavLink to="/Components/remotefrommaster" className="group">
                                     <div className="flex items-center">
                                         <IconMenuTables className="group-hover:!text-primary shrink-0" />
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Report From Stock')}</span>
                                     </div>
                                 </NavLink>
-                            </li>  */}
-                            <li className="menu nav-item">
-                                <NavLink to="/components/formMaster" className="group">
-                                    <div className="flex items-center">
-                                        <IconMenuTables className="group-hover:!text-primary shrink-0" />
-                                        <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Form Master')}</span>
-                                    </div>
-                                </NavLink>
-                            </li>
+                            </li> */}
                             {/* <li className="menu nav-item">
                                 <NavLink to="/components/exchange-policy" className="group">
                                     <div className="flex items-center">
