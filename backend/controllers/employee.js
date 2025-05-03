@@ -16,3 +16,18 @@ exports.getEmployee = async (req, res) => {
         con.end(); // ✅ Always close the connection
     }
 };
+
+exports.getEmployees = async (req, res) => {
+    const schemaName = req.schema;
+    const con = getTenantDB(schemaName);
+    const query = util.promisify(con.query).bind(con); // :key: Convert to promise
+    try {
+        const result = await query('SELECT * FROM empmaster');
+        res.json(result);
+    } catch (err) {
+        console.error('Error fetching empmaster:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    } finally {
+        con.end(); // :white_tick: Always close the connection
+    }
+};

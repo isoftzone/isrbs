@@ -66,6 +66,7 @@ const Sidebar = () => {
     const [bestInSubMenuOpen, setBestInSubMenuOpen] = useState(false);
     const [comparisionSubMenuOpen, setComparisionSubMenuOpen] = useState(false);
     const [deliverySubMenuOpen, setDeliverySubMenuOpen] = useState(false);
+    const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
 
     const toggleMenu = (menu: any) => {
         if (menu === 'basic') {
@@ -456,6 +457,10 @@ const Sidebar = () => {
             }
         }
     }, []);
+
+    interface MenuItem {
+        FormName: string;
+    }
 
     useEffect(() => {
         if (window.innerWidth < 1024 && themeConfig.sidebar) {
@@ -1302,18 +1307,18 @@ const Sidebar = () => {
                                                         <NavLink to="/components/reportfromstock?page=customer">Customer</NavLink>
                                                     </li>
                                                     <li>
-                                                        <NavLink to="/components/dealerreport">Dealer</NavLink>
+                                                        <NavLink to="/components/reportfromstock?page=dealer">Dealer</NavLink>
                                                     </li>
                                                     <li>
-                                                        <NavLink to="/components/employeereport">Employee</NavLink>
+                                                        <NavLink to="/components/reportfromstock?page=employee">Employee</NavLink>
                                                     </li>
                                                     <li>
-                                                        <NavLink to="/datatables/masterInput">Search</NavLink>
+                                                        <NavLink to="/components/reportfromstock?page=item">Items</NavLink>
                                                     </li>
                                                     <li>
-                                                        <NavLink to="/datatables/frmCodeType?category=brand">Brand</NavLink>
+                                                        <NavLink to="/components/reportfromstock?page=transport">Transport</NavLink>
                                                     </li>
-                                                    <li>
+                                                    {/* <li>
                                                         <NavLink to="/datatables/frmCodeType?category=formName">FromName</NavLink>
                                                     </li>
                                                     <li>
@@ -1387,7 +1392,7 @@ const Sidebar = () => {
                                                     </li>
                                                     <li>
                                                         <NavLink to="/datatables/frmCodeType?category=tag">Tag</NavLink>
-                                                    </li>
+                                                    </li> */}
 
                                                     {/* <li>
                                                         <NavLink to="/stockTables/stockMovement">Stock Movement</NavLink>
@@ -1499,6 +1504,122 @@ const Sidebar = () => {
                                             </AnimateHeight>
                                         </li>
                                         <li>
+                                                        <button type="button" className={`${bestInSubMenuOpen ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('best_in')}>
+                                                            <div className="flex items-center">
+                                                                <IconMenuDatatables className="group-hover:!text-primary shrink-0" />
+                                                                <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Stock</span>
+                                                            </div>
+                                                            <div className={bestInSubMenuOpen ? '' : 'rtl:rotate-90 -rotate-90'}>
+                                                                <IconCaretDown />
+                                                            </div>
+                                                        </button>
+
+                                                        <AnimateHeight duration={300} height={bestInSubMenuOpen ? 'auto' : 0}>
+                                                        <ul className="sub-menu text-gray-500">
+                                                                <li>
+                                                                    <NavLink to="/components/reportfromstock?page=Stockdetail">Stock Detail</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Brand Item Wise</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Item Brand Item Wise</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Brand Size Wise</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Stock Movement</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Stock Report</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Stcok Aging</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Stock Summary Item Name Wise</NavLink>
+                                                                </li>
+                                                                {/* <li>
+                                                                    <NavLink to="#">Dealer Wise Sales</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Sales</NavLink>
+                                                                </li> */}
+                                                            </ul>
+                                                        </AnimateHeight>
+                                                    </li>
+                                        <li>
+                                            <button type="button" className={`${salesSubMenuOpen ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('sales')}>
+                                                <div className="flex items-center">
+                                                    <IconMenuDatatables className="group-hover:!text-primary shrink-0" />
+                                                    <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Sales</span>
+                                                </div>
+                                                <div className={salesSubMenuOpen ? '' : 'rtl:rotate-90 -rotate-90'}>
+                                                    <IconCaretDown />
+                                                </div>
+                                            </button>
+
+                                            <AnimateHeight duration={300} height={salesSubMenuOpen ? 'auto' : 0}>
+                                                <ul className="sub-menu text-gray-500">
+                                                    <li>
+                                                        <button type="button" className={`${salesReportSubMenuOpen ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('inn_sales')}>
+                                                            <div className="flex items-center">
+                                                                <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Sales</span>
+                                                            </div>
+                                                            <div className={salesReportSubMenuOpen ? '' : 'rtl:rotate-90 -rotate-90'}>
+                                                                <IconCaretDown />
+                                                            </div>
+                                                        </button>
+
+                                                        <AnimateHeight duration={300} height={salesReportSubMenuOpen ? 'auto' : 0}>
+                                                            <ul className="sub-menu text-gray-500">
+                                                                <li>
+                                                                    <NavLink to="#">Sales Report</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Sales Register</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Sales Summary</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Sales Detail Report</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Sales Detail Report</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Sales Profit</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Sales Outstanding</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Sales Profit MR</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Discount Sale</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Discount Wise Sales</NavLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavLink to="#">Sales</NavLink>
+                                                                </li>
+                                                            </ul>
+                                                        </AnimateHeight>
+                                                    </li>
+                                                   
+                                                   
+                                                    
+                                                   
+                                                 
+                                                </ul>
+                                            </AnimateHeight>
+                                        </li>
+                                       
+                                        <li>
                                             <NavLink to="/components/customermaster">Stock</NavLink>
                                         </li>
                                         <li>
@@ -1529,6 +1650,23 @@ const Sidebar = () => {
                                 </AnimateHeight>
                             </li>
 
+
+                            {/* <li className="menu nav-item">
+                                <NavLink to="/components/formmaster" className="group">
+                                    <div className="flex items-center">
+                                        <IconMenuTables className="group-hover:!text-primary shrink-0" />
+                                        <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Form Master')}</span>
+                                    </div>
+                                </NavLink>
+                            </li> */}
+                             <li className="menu nav-item">
+                                <NavLink to="/Components/item-master" className="group">
+                                    <div className="flex items-center">
+                                        <IconMenuTables className="group-hover:!text-primary shrink-0" />
+                                        <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Item Master')}</span>
+                                    </div>
+                                </NavLink>
+                            </li>
                             <li className="menu nav-item">
                                 <NavLink to="/components/aboutus" className="group">
                                     <div className="flex items-center">
