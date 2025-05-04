@@ -103,7 +103,12 @@ const ItemMaster: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.post(`${BASE_URL}/postcmbAW`, {TblName: 'MASTER',FldName: 'PRIMENAME',FldCode: 'PRIMEKEYID',OrdBy: 'SEQUENCE',WhFldName: ['Product', 'Status','Colour','Brand','Style','Size','Buyer','Season','Company','Section','Category'] // Modify your backend to handle an array of field names
+            const response = await axios.post(`${BASE_URL}/postcmbAW`, 
+                {TblName: 'MASTER',
+                    FldName: 'PRIMENAME',
+                    FldCode: 'PRIMEKEYID',
+                    OrdBy: 'SEQUENCE',
+                    WhFldName: ['Product', 'Status','Colour','Brand','Style','Size','Buyer','Season','Company','Section','Category'] // Modify your backend to handle an array of field names
             }, {
                 withCredentials: true,
               headers: {

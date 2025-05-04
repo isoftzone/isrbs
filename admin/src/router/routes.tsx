@@ -50,8 +50,13 @@ import StockInwardSearch from '../pages/Components/StockInwardSearch';
 import StockOutward from '../pages/Components/StockOutward';
 import StockOutwardSearch from '../pages/Components/StockOutwardSearch';
 import AgentReport from '../pages/Components/AgentReport';
+<<<<<<< Updated upstream
 import ReportFromStock from '../pages/Components/MasterReport';
 import FormMaster from '../pages/Components/FormMaster';
+=======
+import { ReportMaster } from '../pages/Components/ReportMaster';
+import ReportFromStock from '../pages/Components/MasterReport';
+>>>>>>> Stashed changes
 // import ExchangePolicy from /ExchangePolicy';
 const Index = lazy(() => import('../pages/Index'));
 const Analytics = lazy(() => import('../pages/Analytics'));
@@ -340,6 +345,10 @@ const routes = [
         element: <HideSeek/>
     },
     {
+        path: '/Components/ReportMaster',
+        element: <ReportMaster/>
+    },
+    {
         path: '/Components/image-update',
         element: <ImageUpdates/>
     },
@@ -352,13 +361,17 @@ const routes = [
         element: <RemoteFromMaster/>
     },
     {
+        path: '/Components/reportmaster',
+        element: <ReportMaster/>
+    },
+    {
         path: '/components/exchange-policy',
         element: <ExchangePolicy/>
     },
-    {
-        path: '/components/terms-conditions',
-        element: <TermsAndConditions />
-    },
+    // {
+    //     path: '/components/terms-conditions',
+    //     element: <TermsAndConditions />
+    // },
     {
         path: '/components/exchange-process',
         element: <ExchangeProcess />
@@ -551,6 +564,7 @@ const routes = [
     //     path: '/components/DetailSearchList',
     //     element: <DetailSearchList />,
     // },
+<<<<<<< Updated upstream
     {
         path: '/components/reportfromstock',
         element: <ReportFromStock />,
@@ -563,10 +577,16 @@ const routes = [
         path: '/components/itemmaster',
         element: <ItemMaster />,
     },
+=======
+>>>>>>> Stashed changes
     
     {
         path: '/components/finyear',
         element: <FinYear />,
+    },
+    {
+        path: '/Components/reportfromstock',
+        element: <ReportFromStock />,
     },
     {
         path: '/components/city',
