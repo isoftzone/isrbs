@@ -4,7 +4,9 @@ const util = require("util");
 // GET all records from agentmaster
 exports.getMaster = async (req, res) => {
   const schemaName = req.schema;
-  const con = getTenantDB(schemaName);
+  const companyid = req.schema;
+
+  const con = getTenantDB(schemaName, companyid);
   const query = util.promisify(con.query).bind(con);
 
   try {

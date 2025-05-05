@@ -11,6 +11,7 @@ const verifyToken = (req, res, next) => {
     if (err) return res.status(403).send("Token is not valid!");
 
     req.schema = decoded.SCHEMANAME;
+    req.companyid = decoded.COMPANYID;
     req.userId = decoded.USERID; 
     next();
   });
