@@ -1,20 +1,19 @@
 const mysql = require("mysql");
 
-const getTenantDB = (schemaName,companyid ) => {
+const getTenantDB = (schemaName) => {
   const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT || 3306,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: schemaName,
-    companyid: companyid,
   });
   
   connection.connect((err) => {
     if (err) {
       console.error(`Error connecting to schema [${schemaName}]:`, err);
     } else {
-      console.log(`Connected to schema: ${schemaName, companyid}`);
+      console.log(`Connected to schema : ${schemaName}`);
     }
   });
 
