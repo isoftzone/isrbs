@@ -197,65 +197,55 @@ const ReportFromStock: React.FC = () => {
             <div className="flex flex-col lg:flex-row gap-4 bg-gray-100 min-h-screen">
                 <div className="w-full pt-2 xl:w-1/4">
                     <nav className={`sidebarr min-h-screen top-[6%] bottom-0 w-full lg:w-full z-50 transition-all duration-300 ${semidark ? 'text-white-dark' : ''}`}>
-                        <div className="dark:bg-black h-full">
-                            <div className="shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] bg-white ms-0 lg:ms-3 filter-section">
-                                <div className="w-full h-[720px] overflow-y-auto p-2">
-                                    {' '}
-                                    {/* Changed <table> to <div> */}
-                                    <div className="overflow-y-auto block h-full">
-                                        {' '}
-                                        {/* Changed <tbody> to <div> */}
-                                        {reportField.map((item, ind) => (
-                                            <div key={ind} className="mb-4">
-                                                {' '}
-                                                {/* Changed <tr> to <div> and added margin-bottom for spacing */}
-                                                <div className="font-bold">{item.Lable}</div> {/* Removed <td> and block display */}
-                                                <div>
-                                                    {' '}
-                                                    {/* Removed <td> and block display */}
-                                                    {item.control === 'Dropdown' ? (
-                                                        <select
-                                                            className="w-full border border-gray-300 rounded px-2 py-1"
-                                                            onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))}
-                                                        >
-                                                            <option value="">-- All --</option>
-                                                            {dropdownData[item.name]?.map((option, index) => (
-                                                                <option key={index} value={option}>
-                                                                    {option}
-                                                                </option>
-                                                            ))}
-                                                        </select>
-                                                    ) : item.control === 'input' || item.control === 'Textbox' ? (
-                                                        <input
-                                                            type={item.type === 'Numeric' ? 'number' : 'text'}
-                                                            className="w-full border border-gray-300 rounded px-2 py-1"
-                                                            placeholder={item.name}
-                                                            onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))}
-                                                        />
-                                                    ) : item.control === 'DatetimePicker' ? (
-                                                        <input
-                                                            type="datetime-local"
-                                                            className="w-full border border-gray-300 rounded px-2 py-1"
-                                                            onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))}
-                                                        />
-                                                    ) : item.control === 'Radiobutton' ? (
-                                                        <div className="flex space-x-4">
-                                                            <label>
-                                                                <input type="radio" name={item.name} value="Yes" onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))} />
-                                                                Yes
-                                                            </label>
-                                                            <label>
-                                                                <input type="radio" name={item.name} value="No" onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))} />
-                                                                No
-                                                            </label>
-                                                        </div>
-                                                    ) : (
-                                                        <span>Unsupported control</span>
-                                                    )}
-                                                </div>
+                        <div className="dark:bg-black h-full flex flex-col">
+                            <div className="shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] bg-white ms-0 lg:ms-3 filter-section flex-grow overflow-y-auto">
+                                <div className="w-full p-2">
+                                    {reportField.map((item, ind) => (
+                                        <div key={ind} className="mb-4">
+                                            <div className="font-bold">{item.Lable}</div>
+                                            <div>
+                                                {item.control === 'Dropdown' ? (
+                                                    <select
+                                                        className="w-full border border-gray-300 rounded px-2 py-1"
+                                                        onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))}
+                                                    >
+                                                        <option value="">-- All --</option>
+                                                        {dropdownData[item.name]?.map((option, index) => (
+                                                            <option key={index} value={option}>
+                                                                {option}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                ) : item.control === 'input' || item.control === 'Textbox' ? (
+                                                    <input
+                                                        type={item.type === 'Numeric' ? 'number' : 'text'}
+                                                        className="w-full border border-gray-300 rounded px-2 py-1"
+                                                        placeholder={item.name}
+                                                        onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))}
+                                                    />
+                                                ) : item.control === 'DatetimePicker' ? (
+                                                    <input
+                                                        type="datetime-local"
+                                                        className="w-full border border-gray-300 rounded px-2 py-1"
+                                                        onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))}
+                                                    />
+                                                ) : item.control === 'Radiobutton' ? (
+                                                    <div className="flex space-x-4">
+                                                        <label>
+                                                            <input type="radio" name={item.name} value="Yes" onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))} />
+                                                            Yes
+                                                        </label>
+                                                        <label>
+                                                            <input type="radio" name={item.name} value="No" onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))} />
+                                                            No
+                                                        </label>
+                                                    </div>
+                                                ) : (
+                                                    <span>Unsupported control</span>
+                                                )}
                                             </div>
-                                        ))}
-                                    </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                             <button type="submit" className="bg-primary text-white px-4 py-2 rounded hover:bg-blue-700 w-full mt-3" onClick={handleSearch}>
@@ -267,6 +257,13 @@ const ReportFromStock: React.FC = () => {
 
                 <div className="flex-1 px-3 overflow-auto">
                     <div className="overflow-x-auto">
+                        <div className="flex justify-start gap-3 pt-3">
+                            <button className="btn btn-primary">CSV</button>
+                            <button className="btn btn-primary">TXT</button>
+                            <button className="btn btn-primary">EXCEL</button>
+                            <button className="btn btn-primary">PRINT</button>
+                            <input type="search" className=" border border-grey-100 rounded" />
+                        </div>
                         <table className="min-w-full border border-gray-300">
                             <thead>
                                 <tr>
