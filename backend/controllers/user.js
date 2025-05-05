@@ -15,7 +15,7 @@ exports.addUser = async (req, res) => {
         })
     });
 };
-exports.getAll = async (req, res) => {  console.log('Global SCHEMANAME set:', global.SCHEMANAME);
+exports.getAll = async (req, res) => {  console.log('Global SCHEMANAME set:', global.SCHEMANAME, global.COMPANYID);
    await connection.query('SELECT * FROM usermaster', (err, result) => {
         if (err) {
             throw err;
@@ -61,14 +61,17 @@ exports.loginUser = async (req, res) => {
         return res.status(401).json({ msg: "Invalid password" });
       }
 
-      res.cookie('jwt', createToken(user.SCHEMANAME, user.USERID), {
+      res.cookie('jwt', createToken(user.SCHEMANAME, user.USERID,user.COMPANYID), {
         maxAge: maxAge, 
         secure: true,
         sameSite: "None",
       });
 
       global.SCHEMANAME = user.SCHEMANAME;
+      global.COMPANYID = user.COMPANYID;
       console.log('Global SCHEMANAME set:', global.SCHEMANAME);
+      console.log('Global COMPANYID set:', global.COMPANYID);
+
       console.log('Login successful:', user);
 
       return res.status(200).json({
