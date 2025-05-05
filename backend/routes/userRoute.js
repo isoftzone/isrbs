@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 // const upload = require('../path/to/your/multer/config'); // Adjust the path to your multer configuration
-
+const dashbord = require("../controllers/dashbord");
 const users = require("../controllers/user");
 const hometable = require("../controllers/hometable");
 const homepage = require("../controllers/homepage");
@@ -147,5 +147,14 @@ router.post("/createStockDetail", verifyToken, stockdetial.createStockDetail);
 router.get("/getStockDetails", verifyToken, stockdetial.getStockDetails);
 
 // router.get("/getMasterSet",verifyToken,rfmaster.getMasterSet);
+
+
+router.get("/getTCustomer", verifyToken, dashbord.getTCustomer);
+router.get("/getTSale", verifyToken, dashbord.getTSale);
+router.get("/getTPurchase", verifyToken, dashbord.getTPurchase);
+router.get("/getTStock", verifyToken, dashbord.getTStock);
+
+
+
 
 module.exports = router;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '../store';
@@ -8,6 +9,7 @@ import Dropdown from '../components/Dropdown';
 import { setPageTitle } from '../store/themeConfigSlice';
 import IconHorizontalDots from '../components/Icon/IconHorizontalDots';
 import IconDollarSign from '../components/Icon/IconDollarSign';
+import IconEye from '../components/Icon/IconEye';
 import IconInbox from '../components/Icon/IconInbox';
 import IconTag from '../components/Icon/IconTag';
 import IconCreditCard from '../components/Icon/IconCreditCard';
@@ -20,6 +22,10 @@ import IconBolt from '../components/Icon/IconBolt';
 import IconCaretDown from '../components/Icon/IconCaretDown';
 import IconPlus from '../components/Icon/IconPlus';
 import IconMultipleForwardRight from '../components/Icon/IconMultipleForwardRight';
+import FinYear from './Components/FinYear';
+
+
+
 
 const Index = () => {
     const dispatch = useDispatch();
@@ -29,8 +35,146 @@ const Index = () => {
     const isDark = useSelector((state: IRootState) => state.themeConfig.theme === 'dark' || state.themeConfig.isDarkMode);
     const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
 
-    const [loading] = useState(false);
 
+    const [loading] = useState(false);
+    const [customer, setCustomer] = useState<number | null>(null);
+    const [netSale, setNetSale] = useState<number | null>(null);
+    const [netPurchase, setNetPurchase] = useState<number | null>(null);
+    const [netStock, setNetStock] = useState<number | null>(null);
+    const [FinYear, setFinYear] = useState<string>('2025-26');
+    const [QTY, setQTY] = useState<number | null>(null);
+    const [P_AMOUNT, setP_AMOUNT] = useState<number | null>(null);
+    const [MRP_AMOUNT, setMRP_AMOUNT] = useState<number | null>(null);
+    
+
+    
+    //Total Customer
+    
+    useEffect(() => {
+        const fetchCustomer = async () => {
+          try {
+            const response = await axios.get('http://localhost:3000/getTCustomer', {
+              withCredentials: true,
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+            });
+    
+            // Debug: log response structure
+            console.log('API Response:', response.data);
+    
+            const totalCustomer = parseFloat(response.data.totalCustomer);
+            //const receivedChange = parseFloat(response.data.changePercent);
+    
+            if (!isNaN(totalCustomer)) setCustomer(totalCustomer);
+            console.log('Customers:', totalCustomer);
+    
+          } catch (error) {
+            console.error('Error fetching price:', error);
+          }
+        };
+        console
+    
+        fetchCustomer();
+      }, []);
+    
+      //Total Customer
+    
+    //Total Sale
+  useEffect(() => {
+  const fetchSale = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/getTSale', {
+        params: {
+          FinYear: FinYear, // Correct way
+        },
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+
+      console.log('API Response:', response.data);
+
+      const NetSale = parseFloat(response.data.NetSale);
+      if (!isNaN(NetSale)) setNetSale(NetSale);
+      console.log('NetSale:', NetSale);
+    } catch (error) {
+      console.error('Error fetching price:', error);
+    }
+  };
+
+  fetchSale();
+}, [FinYear]); // <== use correct dependency
+
+
+      //total Purchase
+      useEffect(() => {
+        const fetchPurchase = async () => {
+          try {
+            const response = await axios.get('http://localhost:3000/getTPurchase', {
+                params: {
+                    FinYear: FinYear, // Correct way
+                  },
+              withCredentials: true,
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+            });
+    
+            // Debug: log response structure
+            console.log('API Response : getTPurchase:', response.data);
+    
+            const netPurchase = parseFloat(response.data.netPurchase);
+            //const receivedChange = parseFloat(response.data.changePercent);
+    
+            if (!isNaN(netPurchase)) setNetPurchase(netPurchase);
+            console.log('netPurchase:', netPurchase);
+    
+          } catch (error) {
+            console.error('Error fetching price:', error);
+          }
+        };
+       
+    
+        fetchPurchase();
+      }, [FinYear]);
+
+      //Total Purchase
+
+            //total stock
+            useEffect(() => {
+                const fetchStock = async () => {
+                  try {
+                    const response = await axios.get('http://localhost:3000/getTStock', {
+                      params: { FinYear }, // ✅ Only FinYear is needed
+                      withCredentials: true,
+                      headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                      },
+                    });
+              
+                    console.log('API Response : getTStock:', response.data);
+              
+                    const { QTY, P_AMOUNT, MRP_AMOUNT } = response.data;
+                    console.log("stock ka data",response.data);
+              
+                    if (!isNaN(QTY)) setQTY(QTY);
+                    if (!isNaN(P_AMOUNT)) setP_AMOUNT(P_AMOUNT);
+                    if (!isNaN(MRP_AMOUNT)) setMRP_AMOUNT(MRP_AMOUNT);
+              
+                  } catch (error) {
+                    console.error('Error fetching stock data:', error);
+                  }
+                };
+              
+                if (FinYear) {
+                  fetchStock();
+                }
+              }, [FinYear]); // ✅ only FinYear is dependency
+        
+              //Total stock
+    
     //Revenue Chart
     const revenueChart: any = {
         series: [
@@ -414,9 +558,166 @@ const Index = () => {
                 </li>
             </ul>
 
-            <div className="pt-5">
-                <div className="grid xl:grid-cols-3 gap-6 mb-6">
-                    <div className="panel h-full xl:col-span-2">
+            <div className="pt-4">
+            <div className="grid xl:grid-cols-1 gap-6 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6 text-white">
+                    <div className="panel bg-gradient-to-r from-cyan-500 to-cyan-400">
+                        <div className="flex justify-between">
+                            <div className="ltr:mr-1 rtl:ml-1 text-md font-semibold">Total Customer</div>
+                            <div className="dropdown">
+                                <Dropdown
+                                    offset={[0, 5]}
+                                    placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
+                                    btnClassName="hover:opacity-80"
+                                    button={<IconHorizontalDots className="hover:opacity-80 opacity-70" />}
+                                >
+                                    <ul className="text-black dark:text-white-dark">
+                                        <li>
+                                            <button type="button">View Report</button>
+                                        </li>
+                                        <li>
+                                            <button type="button">Edit Report</button>
+                                        </li>
+                                    </ul>
+                                </Dropdown>
+                            </div>
+                        </div>
+                        <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3">
+        {customer !== null ? `${customer.toFixed(2)}` : 'Loading...'}
+      </div>
+      {customer !== null && (
+        <div className="badge bg-white/30">
+          {customer >= 0 ? '+' : ''}
+          {customer.toFixed(2)}%
+        </div>
+      )}
+                        <div className="flex items-center font-semibold mt-5">
+                            <IconEye className="ltr:mr-2 rtl:ml-2 shrink-0" />
+                            Last Week 44,700
+                        </div>
+                    </div>
+
+                    {/* Sessions */}
+                    <div className="panel bg-gradient-to-r from-violet-500 to-violet-400">
+                        <div className="flex justify-between">
+                            <div className="ltr:mr-1 rtl:ml-1 text-md font-semibold">Total Purchase</div>
+                            <div className="dropdown">
+                                <Dropdown
+                                    offset={[0, 5]}
+                                    placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
+                                    btnClassName="hover:opacity-80"
+                                    button={<IconHorizontalDots className="hover:opacity-80 opacity-70" />}
+                                >
+                                    <ul className="text-black dark:text-white-dark">
+                                        <li>
+                                            <button type="button">View Report</button>
+                                        </li>
+                                        <li>
+                                            <button type="button">Edit Report</button>
+                                        </li>
+                                    </ul>
+                                </Dropdown>
+                            </div>
+                        </div>
+                        <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3">
+        {netPurchase !== null ? `₹${netPurchase.toFixed(2)}` : 'Loading...'}
+      </div>
+      {netPurchase !== null && (
+        <div className="badge bg-white/30">
+          {netPurchase >= 0 ? '+' : ''}
+          {netPurchase.toFixed(2)}%
+        </div>
+      )}
+                        <div className="flex items-center font-semibold mt-5">
+                            <IconEye className="ltr:mr-2 rtl:ml-2 shrink-0" />
+                            Last Week 84,709
+                        </div>
+                    </div>
+
+                    {/*  Time On-Site */}
+                    <div className="panel bg-gradient-to-r from-blue-500 to-blue-400">
+                        <div className="flex justify-between">
+                            <div className="ltr:mr-1 rtl:ml-1 text-md font-semibold">Stock</div>
+                            <div className="dropdown">
+                                <Dropdown
+                                    offset={[0, 5]}
+                                    placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
+                                    btnClassName="hover:opacity-80"
+                                    button={<IconHorizontalDots className="hover:opacity-80 opacity-70" />}
+                                >
+                                    <ul className="text-black dark:text-white-dark">
+                                        <li>
+                                            <button type="button">View Report</button>
+                                        </li>
+                                        <li>
+                                            <button type="button">Edit Report</button>
+                                        </li>
+                                    </ul>
+                                </Dropdown>
+                            </div>
+                        </div>
+                        <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3">
+        {QTY !== null ? `${QTY.toFixed(2)}`  : 'Loading...' }
+      </div>
+      {P_AMOUNT !== null && (
+        <div className="badge bg-white/30">
+          {P_AMOUNT >= 0 ? '+' : ''}
+         Purchase Amount ₹ {P_AMOUNT.toFixed(2)}%
+        </div>
+        
+      )}
+      {MRP_AMOUNT !== null && (
+        <div className="badge bg-white/30">
+          {MRP_AMOUNT >= 0 ? '+' : ''}
+         MRP Amount ₹ {MRP_AMOUNT.toFixed(2)}
+        </div>
+        
+      )}
+                        <div className="flex items-center font-semibold mt-5">
+                            <IconEye className="ltr:mr-2 rtl:ml-2 shrink-0" />
+                            Last Week 37,894
+                        </div>
+                    </div>
+
+                    {/* Bounce Rate */}
+                    <div className="panel bg-gradient-to-r from-fuchsia-500 to-fuchsia-400">
+                        <div className="flex justify-between">
+                            <div className="ltr:mr-1 rtl:ml-1 text-md font-semibold">Sales</div>
+                            <div className="dropdown">
+                                <Dropdown
+                                    offset={[0, 5]}
+                                    placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
+                                    btnClassName="hover:opacity-80"
+                                    button={<IconHorizontalDots className="hover:opacity-80 opacity-70" />}
+                                >
+                                    <ul className="text-black dark:text-white-dark">
+                                        <li>
+                                            <button type="button">View Report</button>
+                                        </li>
+                                        <li>
+                                            <button type="button">Edit Report</button>
+                                        </li>
+                                    </ul>
+                                </Dropdown>
+                            </div>
+                        </div>
+                        <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3">
+        {netSale !== null ? `₹${netSale.toFixed(2)}` : 'Loading...'}
+      </div>
+      {netSale !== null && (
+        <div className="badge bg-white/30">
+          {netSale >= 0 ? '+' : ''}
+          {netSale.toFixed(2)}%
+        </div>
+      )}
+                        <div className="flex items-center font-semibold mt-5">
+                            <IconEye className="ltr:mr-2 rtl:ml-2 shrink-0" />
+                            Last Week 50.01%
+                        </div>
+                    </div>
+                </div>
+                   <div className="flex grid lg:grid-cols-2 grid-cols-1 gap-6">
+                   <div className="panel h-full xl:col-span-1">
                         <div className="flex items-center justify-between dark:text-white-light mb-5">
                             <h5 className="font-semibold text-lg">Revenue</h5>
                             <div className="dropdown">
@@ -455,7 +756,7 @@ const Index = () => {
                         </div>
                     </div>
 
-                    <div className="panel h-full">
+                    <div className="panel h-full  xl:col-span-1">
                         <div className="flex items-center mb-5">
                             <h5 className="font-semibold text-lg dark:text-white-light">Sales By Category</h5>
                         </div>
@@ -471,8 +772,11 @@ const Index = () => {
                             </div>
                         </div>
                     </div>
+                   </div>
+                </div>
                 </div>
 
+            <div className="pt-5">
                 <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
                     <div className="panel h-full sm:col-span-2 xl:col-span-1">
                         <div className="flex items-center mb-5">
