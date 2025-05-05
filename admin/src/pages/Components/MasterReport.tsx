@@ -128,6 +128,7 @@ const ReportFromStock: React.FC = () => {
      //Report Search
 
     const headers = filter.length > 0 ? Object.keys(filter[0]).map((key) => ({ label: key, key })) : [];
+    
     return (
         <div className="flex flex-col md:flex-row p-8 bg-gray-100 min-h-screen">
             {/* Sidebar */}
@@ -200,6 +201,8 @@ const ReportFromStock: React.FC = () => {
                     </div>
                 </nav>
             </div>
+            
+            
             {/* Right Section - Table */}
             <div className="w-full h-[400px] md:w-1/1 mx-2 overflow-x-auto">
                 <h2 className="text-lg font-semibold mb-2">{pagename.toUpperCase()}</h2>

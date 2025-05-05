@@ -179,14 +179,10 @@ exports.reportSearch = async (req, res) => {
       baseQuery = "SELECT * FROM agentmaster WHERE 1=1";
       break;
     case "employee":
-      baseQuery = `
-             SELECT * FROM empmaster WHERE 1=1
-          `;
+      baseQuery = "SELECT * FROM empmaster WHERE 1=1";
       break;
     case "transport":
-      baseQuery = `
-             SELECT * FROM transportmaster WHERE 1=1
-          `;
+      baseQuery = "SELECT * FROM transportmaster WHERE 1=1";
       break;
     default:
       return res.status(400).json({ error: "Unknown page name" });
