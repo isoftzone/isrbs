@@ -164,7 +164,6 @@ exports.reportSearch = async (req, res) => {
   const schemaName = req.schema; // Set by middleware
   const con = getTenantDB(schemaName);
   const query = util.promisify(con.query).bind(con);
-<<<<<<< Updated upstream
   const { pageName } = req.query;
   const filters = req.query.formData ? JSON.parse(req.query.formData) : {};
   let baseQuery = "";
@@ -218,22 +217,6 @@ exports.reportSearch = async (req, res) => {
   }
   try {
     const result = await query(baseQuery, params);
-=======
-  const tableName = req.query.tableName;
-  const filters = req.query.formData;
-  console.log("filters", filters);
-  try {
-    let sql = `SELECT * FROM ${tableName} WHERE 1=1`;
-    const params = [];
-    // Dynamically append conditions for all filters
-    Object.entries(filters).forEach(([key, value]) => {
-      if (value) {
-        sql += ` AND \`${key}\` LIKE ?`;
-        params.push(`%${value}%`);
-      }
-    });
-    const result = await query(sql, params);
->>>>>>> Stashed changes
     res.json(result);
   } catch (err) {
     console.error("Error executing query:", err);

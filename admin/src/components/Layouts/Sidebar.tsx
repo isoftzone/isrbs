@@ -1307,14 +1307,7 @@ const Sidebar = () => {
                                                         <NavLink to="/components/reportfromstock?page=customer">Customer</NavLink>
                                                     </li>
                                                     <li>
-<<<<<<< Updated upstream
                                                         <NavLink to="/components/reportfromstock?page=dealer">Dealer</NavLink>
-=======
-                                                        <NavLink to="/Components/reportmaster?page=Employee">Employee</NavLink>
-                                                    </li>
-                                                    <li>
-                                                        <NavLink to="/components/dealerreport">Dealer</NavLink>
->>>>>>> Stashed changes
                                                     </li>
                                                     <li>
                                                         <NavLink to="/components/reportfromstock?page=employee">Employee</NavLink>

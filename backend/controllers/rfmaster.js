@@ -68,7 +68,6 @@ const util = require("util");
 //     }
 // };
 
-<<<<<<< Updated upstream
 exports.getFilter = async (req, res) => {
   const schemaName = req.schema;
   const con = getTenantDB(schemaName);
@@ -79,47 +78,6 @@ console.log("formName",formName)
   try {
     const result = await query(
       "SELECT formName, control, name, sequence,  type, value, Lable FROM isrbs_master.rfmaster where formName = ?", [formName]
-=======
-// exports.getrfmaster = async (req, res) => {
-//   const schemaName = req.schema;
-//   const con = getTenantDB(schemaName);
-//   const query = util.promisify(con.query).bind(con);
-//   const { formName } = req.body;
-//   // Console.log("formName", formName);
-//   console.log("formName", formName)
-  
-//   try {
-//     const result = await query(
-//       "SELECT formName, control, name, sequence,  type, value FROM isrbs_master.rfmaster where formName = formName"
-//     );
-
-//     res.status(200).json({
-//       message: "Data retrieved successfully",
-//       data: result,
-//     });
-//   } catch (err) {
-//     console.error("Error in /getrfmaster:", error);
-//     res
-//       .status(500)
-//       .json({ error: "Internal server error", details: error.message });
-//   } finally {
-//     con.end(); // Close connection
-//   }
-// };
-
-exports.getrfmaster = async (req, res) => {
-  const schemaName = req.schema;
-  const con = getTenantDB(schemaName);
-  const query = util.promisify(con.query).bind(con);
-  const { formName } = req.query;
-
-  console.log("formName", formName);
-
-  try {
-    const result = await query(
-      "SELECT formName, control, name, sequence, type, value FROM isrbs_master.rfmaster WHERE formName = ?",
-      [formName]
->>>>>>> Stashed changes
     );
 
     res.status(200).json({
