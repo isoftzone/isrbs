@@ -508,7 +508,7 @@ const Sidebar = () => {
                 <div className="bg-white dark:bg-black h-full">
                     <div className="flex justify-between items-center px-4 py-3">
                         <NavLink to="" className="main-logo flex items-center shrink-0">
-                            <img className="w-8 ml-[5px] flex-none" src="/assets/images/auth/logo-white1.png" alt="logo" />
+                            <img className="w-8 ml-[5px] flex-none" src="/assets/images/auth/Logo-04.png" alt="logo" />
                             <span className="text-2xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">{t('i-SOFTZONE')}</span>
                         </NavLink>
 
