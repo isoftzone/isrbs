@@ -52,6 +52,9 @@ import StockOutwardSearch from '../pages/Components/StockOutwardSearch';
 import AgentReport from '../pages/Components/AgentReport';
 import ReportFromStock from '../pages/Components/MasterReport';
 import FormMaster from '../pages/Components/FormMaster';
+import MasterCalculation from '../pages/Components/MasterCalculation';
+import PurchaseCalculation from '../pages/Components/PurchaseCalculation';
+import SalesCalculation from '../pages/Components/SalesCalculation';
 // import ExchangePolicy from /ExchangePolicy';
 const Index = lazy(() => import('../pages/Index'));
 const Analytics = lazy(() => import('../pages/Analytics'));
@@ -241,6 +244,18 @@ const routes = [
         element: <Contacts />,
     },
     {
+        path: '/components/MasterCalculations',
+        element: <MasterCalculation />,
+    },
+    {
+        path: '/components/PurchaseCalculations',
+        element: <PurchaseCalculation />,
+    },
+    {
+        path: '/components/SalesCalculations',
+        element: <SalesCalculation />,
+    },
+    {
         path: '/apps/mailbox',
         element: <Mailbox />,
     },
@@ -337,23 +352,23 @@ const routes = [
     },
     {
         path: '/Components/HideSeek',
-        element: <HideSeek/>
+        element: <HideSeek />,
     },
     {
         path: '/Components/image-update',
-        element: <ImageUpdates/>
+        element: <ImageUpdates />,
     },
     {
         path: '/Components/item-master',
-        element: <ItemMaster/>
+        element: <ItemMaster />,
     },
     {
         path: '/Components/remotefrommaster',
-        element: <RemoteFromMaster/>
+        element: <RemoteFromMaster />,
     },
     {
         path: '/components/exchange-policy',
-        element: <ExchangePolicy/>
+        element: <ExchangePolicy />,
     },
     // {
     //     path: '/components/terms-conditions',
@@ -361,47 +376,47 @@ const routes = [
     // },
     {
         path: '/components/exchange-process',
-        element: <ExchangeProcess />
+        element: <ExchangeProcess />,
     },
     {
         path: '/components/cancellation-policy',
-        element: <CancellationPolicy />
+        element: <CancellationPolicy />,
     },
     {
         path: '/components/refund-policy',
-        element: <RefundPolicy />
+        element: <RefundPolicy />,
     },
     {
         path: '/components/shipping-locations',
-        element: <ShippingLocations />
+        element: <ShippingLocations />,
     },
     {
         path: '/components/terms-service',
-        element: <TermsOfService />
+        element: <TermsOfService />,
     },
     {
         path: '/Components/discountcoupon',
-        element: <DiscountCoupan />
+        element: <DiscountCoupan />,
     },
     {
         path: '/Components/refferalcoupan',
-        element: <RefferalCoupan />
+        element: <RefferalCoupan />,
     },
     {
         path: '/Components/orderlist',
-        element: <OrderList />
+        element: <OrderList />,
     },
     {
         path: '/Components/orderpreview',
-        element: <OrderPreview />
+        element: <OrderPreview />,
     },
     {
         path: '/Components/orderadd',
-        element: <OrderAdd />
+        element: <OrderAdd />,
     },
     {
         path: '/Components/orderedit',
-        element: <OrderEdit />
+        element: <OrderEdit />,
     },
     {
         path: '/components/list-group',
@@ -453,35 +468,35 @@ const routes = [
     },
     {
         path: '/components/openingstock',
-        element: <OpeningStock  />,
+        element: <OpeningStock />,
     },
     {
         path: '/components/stockservice',
-        element: <StockService  />,
+        element: <StockService />,
     },
     {
         path: '/components/stockverification',
-        element: <StockVerification  />,
+        element: <StockVerification />,
     },
     {
         path: '/components/stockinward',
-        element: <StockInward  />,
+        element: <StockInward />,
     },
     {
         path: '/components/stockinwardsearch',
-        element: <StockInwardSearch  />,
+        element: <StockInwardSearch />,
     },
     {
         path: '/components/stockoutward',
-        element: <StockOutward  />,
+        element: <StockOutward />,
     },
     {
         path: '/components/stockoutwardsearch',
-        element: <StockOutwardSearch  />,
+        element: <StockOutwardSearch />,
     },
     {
         path: '/components/agentreport',
-        element: <AgentReport  />,
+        element: <AgentReport />,
     },
     // {
     //     path: '/components/customerreport',
@@ -563,7 +578,7 @@ const routes = [
         path: '/components/itemmaster',
         element: <ItemMaster />,
     },
-    
+
     {
         path: '/components/finyear',
         element: <FinYear />,
@@ -733,29 +748,29 @@ const routes = [
         element: <Basic />,
     },
     {
-    path: '/datatables/customer',
+        path: '/datatables/customer',
         element: <Customer />,
     },
     {
-        path:'/datatables/transport',
-        element: <Transport />
+        path: '/datatables/transport',
+        element: <Transport />,
     },
     {
-    path: '/datatables/employees',
+        path: '/datatables/employees',
         element: <Employees />,
     },
     {
         path: '/datatables/dealers',
-            element: <Dealers />,
-        },
-        {
-            path: '/datatables/items',
-                element: <Items />,
-            },
-            {
-                path: '/datatables/customer_env',
-                    element: <CustomerEnv /> ,
-                },
+        element: <Dealers />,
+    },
+    {
+        path: '/datatables/items',
+        element: <Items />,
+    },
+    {
+        path: '/datatables/customer_env',
+        element: <CustomerEnv />,
+    },
     {
         path: '/datatables/advanced',
         element: <Advanced />,
@@ -802,12 +817,11 @@ const routes = [
     },
     {
         path: '/datatables/masterInput',
-        element: <MasterInput />  ,
+        element: <MasterInput />,
     },
     {
         path: '/datatables/frmCodeType',
-        element: <FrmCodeType />  ,
-        
+        element: <FrmCodeType />,
     },
 
     //StockTables
@@ -821,19 +835,19 @@ const routes = [
     },
     {
         path: '/stockTables/itemBrand',
-        element: <ItemBrand /> ,
+        element: <ItemBrand />,
     },
     {
         path: '/stockTables/itemSize',
-        element: <ItemSize /> ,
+        element: <ItemSize />,
     },
     {
         path: '/stockTables/stockReport',
-        element: <StockReport /> ,
+        element: <StockReport />,
     },
     {
         path: '/stockTables/stockSummary',
-        element: <StockSummary /> ,
+        element: <StockSummary />,
     },
     {
         path: '/stockTables/stockMovement',
@@ -847,124 +861,122 @@ const routes = [
     //Stock Transfer
     {
         path: '/stock_Transfer/sti_Detail',
-        element: <STI_Detail />
+        element: <STI_Detail />,
     },
     {
         path: '/stock_Transfer/sti_Summary',
-        element: <STI_Summary />
+        element: <STI_Summary />,
     },
     {
         path: '/stock_Transfer/sto_Detail',
-        element: <STO_Detail />
+        element: <STO_Detail />,
     },
     {
         path: '/stock_Transfer/sto_Summary',
-        element: <STO_Summary />
+        element: <STO_Summary />,
     },
 
     //Sales Table
     {
-        path:'/salesTables/sellingBrand',
-        element: <SellingBrand />
+        path: '/salesTables/sellingBrand',
+        element: <SellingBrand />,
     },
     {
-        path:'/salesTables/sellingProduct',
-        element: <SellingProduct />
+        path: '/salesTables/sellingProduct',
+        element: <SellingProduct />,
     },
     {
-        path:'/salesTables/sellingItem',
-        element: <SellingItem />
+        path: '/salesTables/sellingItem',
+        element: <SellingItem />,
     },
     {
-        path:'/salesTables/sellingCustomer',
-        element: <SellingCustomer />
+        path: '/salesTables/sellingCustomer',
+        element: <SellingCustomer />,
     },
     {
-        path:'/salesTables/salesComparison',
-        element: <SalesComparison />
+        path: '/salesTables/salesComparison',
+        element: <SalesComparison />,
     },
     {
-        path:'/salesTables/itemWiseSale',
-        element: <ItemWiseSale />
+        path: '/salesTables/itemWiseSale',
+        element: <ItemWiseSale />,
     },
-    
+
     //Sales Table/ Comparison
     {
-        path:'/salesTables/comparison/customerWiseSale',
-        element: <CustomerWiseSale />
+        path: '/salesTables/comparison/customerWiseSale',
+        element: <CustomerWiseSale />,
     },
     {
-        path:'/salesTables/comparison/customerWiseDetail',
-        element: <CustomerWiseDetail />
+        path: '/salesTables/comparison/customerWiseDetail',
+        element: <CustomerWiseDetail />,
     },
     {
-        path:'/salesTables/comparison/employeeSale',
-        element: <EmployeeSale />
+        path: '/salesTables/comparison/employeeSale',
+        element: <EmployeeSale />,
     },
     {
-        path:'/salesTables/comparison/empCompare',
-        element: <EmpCompare />
+        path: '/salesTables/comparison/empCompare',
+        element: <EmpCompare />,
     },
     {
-        path:'/salesTables/comparison/empCompareQty',
-        element: <EmpCompareQty />
+        path: '/salesTables/comparison/empCompareQty',
+        element: <EmpCompareQty />,
     },
     {
-        path:'/salesTables/comparison/dealerSales',
-        element: <DealerSales />
+        path: '/salesTables/comparison/dealerSales',
+        element: <DealerSales />,
     },
     {
-        path:'/salesTables/comparison/dealerCompare',
-        element: <DealerCompare />
+        path: '/salesTables/comparison/dealerCompare',
+        element: <DealerCompare />,
     },
     {
-        path:'/salesTables/comparison/salesDate',
-        element: <SalesDate />
+        path: '/salesTables/comparison/salesDate',
+        element: <SalesDate />,
     },
     {
-        path:'/salesTables/comparison/itemSales',
-        element: <ItemSales />
+        path: '/salesTables/comparison/itemSales',
+        element: <ItemSales />,
     },
     {
-        path:'/salesTables/comparison/agentSales',
-        element: <AgentSales />
+        path: '/salesTables/comparison/agentSales',
+        element: <AgentSales />,
     },
     {
-        path:'/salesTables/comparison/agentSummary',
-        element: <AgentSummary />
+        path: '/salesTables/comparison/agentSummary',
+        element: <AgentSummary />,
     },
     {
-        path:'/salesTables/comparison/consigneeSummary',
-        element: <ConsigneeSummary />
+        path: '/salesTables/comparison/consigneeSummary',
+        element: <ConsigneeSummary />,
     },
     {
-        path:'/salesTables/comparison/dailySales',
-        element: <DailySales />
+        path: '/salesTables/comparison/dailySales',
+        element: <DailySales />,
     },
     {
-        path:'/salesTables/comparison/itemTax',
-        element: <ItemTax />
+        path: '/salesTables/comparison/itemTax',
+        element: <ItemTax />,
     },
     {
-        path:'/salesTables/comparison/helperSales',
-        element: <HelperSales />
+        path: '/salesTables/comparison/helperSales',
+        element: <HelperSales />,
     },
     {
-        path:'/salesTables/comparison/helperCompare',
-        element: <HelperCompare />
+        path: '/salesTables/comparison/helperCompare',
+        element: <HelperCompare />,
     },
     {
-        path:'/salesTables/comparison/helperCompareQty',
-        element: <HelperCompareQty />
+        path: '/salesTables/comparison/helperCompareQty',
+        element: <HelperCompareQty />,
     },
 
     {
-        path:'/salesTables/delChallan',
-        element: <DelChallan />
+        path: '/salesTables/delChallan',
+        element: <DelChallan />,
     },
-   
-    
-    
+
     // Users page
     {
         path: '/users/profile',
@@ -1029,7 +1041,7 @@ const routes = [
         element: <LoginBoxed />,
         layout: 'blank',
     },
-   
+
     {
         path: '/auth/boxed-signup',
         element: <RegisterBoxed />,
