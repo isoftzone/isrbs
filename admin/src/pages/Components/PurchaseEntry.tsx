@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BASE_URL } from '../../config';
 
 interface Purchase {
   COMPANYID: string;
@@ -93,7 +94,7 @@ const PurchaseEntry: React.FC = () => {
     const fetchPurchases = async () => {
       try {
         const token = localStorage.getItem("token"); // assuming JWT is stored here
-        const response = await axios.get("http://localhost:3000/getPurchase", {
+        const response = await axios.get(`${BASE_URL}/getPurchase`, {
             withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,

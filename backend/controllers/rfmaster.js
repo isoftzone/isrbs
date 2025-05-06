@@ -74,7 +74,7 @@ exports.getFilter = async (req, res) => {
   const query = util.promisify(con.query).bind(con);
 // const  {formName} = req.body;
 const { formName } = req.query;
-console.log("formName",formName)
+console.log("Filter Form Name",formName)
   try {
     const result = await query(
       "SELECT formName, control, name, sequence,  type, value, Lable FROM isrbs_master.rfmaster where formName = ?", [formName]

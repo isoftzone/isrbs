@@ -87,7 +87,7 @@ const ReportFromStock: React.FC = () => {
 
     const fetchSalesDetail = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/getrfmaster', {
+            const response = await axios.get(`${BASE_URL}/getrfmaster`, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -203,7 +203,7 @@ const ReportFromStock: React.FC = () => {
     console.log('formname formData', formData);
     const fetchAgentsdata = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/searchMobile`, {
+            const response = await axios.get(`${BASE_URL}/searchMobile`, {
                 params: { APCITY: formData.City, ACMOBILENO: formData.Mobile, AFIRMNAME: formData.Name },
                 withCredentials: true,
                 headers: {
@@ -277,7 +277,7 @@ const ReportFromStock: React.FC = () => {
     useEffect(() => {
         const fetchAgents = async () => {
             try {
-                const res = await axios.get('http://localhost:3000/getMaster', {
+                const res = await axios.get('${BASE_URL}/getMaster', {
                     withCredentials: true,
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,

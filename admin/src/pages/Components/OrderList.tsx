@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../config";
 interface Sale {
   SALEID: string;
   NAME: string;
@@ -22,10 +23,10 @@ const OrderList: React.FC = () => {
 
   const fetchSalesData = async (page: number) => {
     try {
-      // const response = await axios.get(`http://localhost:3000/getSalesMaster/:saleId`);
-      const response = await axios.get(`http://localhost:3000/getSalesMaster`);
+      // const response = await axios.get(`${BASE_URL}/getSalesMaster/:saleId`);
+      const response = await axios.get(`${BASE_URL}/getSalesMaster`);
       const saleId = "someId"; // Replace this with actual saleId
-// const response = await axios.get(`http://localhost:3000/getSalesMaster/10001}`);
+// const response = await axios.get(`${BASE_URL}/getSalesMaster/10001}`);
 console.log("API Response:", response.data);
  // Ensure response data exists before setting state
  if (response.data.sales && Array.isArray(response.data.sales)) {

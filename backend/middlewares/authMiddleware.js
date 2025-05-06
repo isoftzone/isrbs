@@ -14,9 +14,9 @@ const verifyToken = (req, res, next) => {
     req.companyId = decoded.COMPANYID;
     req.userId = decoded.USERID; 
    
-    console.log("Mid companyId:", req.companyId);
-    console.log("Mid SCHEMANAME:", req.schema); 
-    console.log("Mid userId:", req.userId);
+    // console.log("Mid companyId:", req.companyId);
+    // console.log("Mid SCHEMANAME:", req.schema); 
+    // console.log("Mid userId:", req.userId);
     next();
   });
 };

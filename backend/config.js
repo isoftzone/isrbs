@@ -13,7 +13,7 @@ const getTenantDB = (schemaName) => {
     if (err) {
       console.error(`Error connecting to schema [${schemaName}]:`, err);
     } else {
-      console.log(`Connected to schema : ${schemaName}`);
+      //console.log(`Connected to schema : ${schemaName}`);
     }
   });
 

@@ -65,8 +65,8 @@ router.get("/getCodeTypeData", verifyToken, addProductData.getCodeTypeData);
 // // ✅ Route to Get Invoices
 // router.get("/getInvoices",verifyToken, salesdetail.getInvoices);
 
-router.post("/add_user", users.addUser);
-router.post("/login", users.loginUser);
+router.post("/add_user",verifyToken, users.addUser);
+router.post("/login",verifyToken, users.loginUser);
 router.get("/getAllUsers", verifyToken, users.getAll);
 router.delete("/deleteUsers/:id", verifyToken, users.deleteUser);
 router.put("/editUser/:id", verifyToken, users.editUser);

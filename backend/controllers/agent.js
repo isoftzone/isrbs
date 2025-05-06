@@ -1,3 +1,4 @@
+const { console } = require("inspector");
 const getTenantDB = require("../config"); // this should export a function
 const util = require("util");
 
@@ -164,6 +165,11 @@ exports.agents = async (req, res) => {
 
 exports.reportSearch = async (req, res) => {
   const schemaName = req.schema; // Set by middleware
+  const companyId = req.companyId; // Adjust according to where you send it
+  // const FinYear = req.query.FinYear;
+ 
+  console.log("companyId", companyId);
+
   const con = getTenantDB(schemaName);
   const query = util.promisify(con.query).bind(con);
   const { pageName } = req.query;
@@ -189,78 +195,7 @@ exports.reportSearch = async (req, res) => {
     case "transport":
       baseQuery = "SELECT * FROM transportmaster WHERE 1=1";
       break;
-      case "stockdetail":
-      baseQuery = `SELECT
-    QTY,
-    MRP,
-    SALEPRICE,
-    PRODUCT,
-    BARCODE,
-    S.ITEMID AS ITEMID,
-    LOOKUP,
-    ITEMNAME,
-    BRAND,
-    I_SIZE,
-    COLOR,
-    SCOLOR,
-    UNIT,
-    PACKING,
-    BUYER,
-    SEASON,
-    COMPANY,
-    SHELFNO,
-    SEASON,
-    SECTION,
-    MATERIAL,
-    STYLE,
-    CATEGORY,
-    GENDER,
-    PURPRICE,
-    DEALERNAME,
-    QTY * PURPRICE AS AMOUNT,
-    QTY * MRP AS MRP_AMOUNT
-FROM ITEMMASTER IM,
-(
-    SELECT ITEMID, SUM(QTY) AS QTY
-    FROM (
-        SELECT ITEMID, (OPENINGQTY + FQTYADD - FQTYLESS) AS QTY FROM STOCK
-        WHERE COMPANYID = '{companyid}' AND FINYEAR = '{finyear}'
-        UNION ALL
-        SELECT ITEMID, QTY FROM PURCHASEDETAIL
-        WHERE COMPANYID = '{companyid}' AND FINYEAR = '{finyear}'
-        UNION ALL
-        SELECT ITEMID, -QTY FROM PRDETAIL
-        WHERE COMPANYID = '{companyid}' AND FINYEAR = '{finyear}'
-        UNION ALL
-        SELECT ITEMID, -QTY FROM SALESDETAIL
-        WHERE COMPANYID = '{companyid}' AND FINYEAR = '{finyear}'
-        UNION ALL
-        SELECT ITEMID, QTY FROM SRDETAIL
-        WHERE COMPANYID = '{companyid}' AND FINYEAR = '{finyear}'
-        UNION ALL
-        SELECT ITEMID, -QTY FROM STODETAIL
-        WHERE COMPANYID = '{companyid}' AND FINYEAR = '{finyear}'
-        UNION ALL
-        SELECT ITEMID, QTY FROM STIDETAIL
-        WHERE COMPANYID = '{companyid}' AND FINYEAR = '{finyear}'
-        UNION ALL
-        SELECT ITEMID, -QTY FROM JWISSUEDETAIL
-        WHERE COMPANYID = '{companyid}' AND FINYEAR = '{finyear}'
-        UNION ALL
-        SELECT ITEMID, QTY FROM JWRECEVIEDETAIL
-        WHERE COMPANYID = '{companyid}' AND FINYEAR = '{finyear}'
-    ) ST
-    GROUP BY ITEMID
-) S
-WHERE IM.ITEMID = S.ITEMID
-  AND (IFNULL('{BarcodeFrom}', '0') = '0' OR IM.BARCODE >= '{BarcodeFrom}')
-  AND (IFNULL('{BarcodeTo}', '0') = '0' OR IM.BARCODE <= '{BarcodeTo}')
-  AND (IFNULL('{MRPFrom}', '0') = '0' OR IM.MRP >= '{MRPFrom}')
-  AND (IFNULL('{MRPTo}', '0') = '0' OR IM.MRP <= '{MRPTo}')
-  AND IM.CUSTOME = 'N'
-ORDER BY PRODUCT, BRAND, ITEMNAME;`;
-      break;
-    default:
+     default:
       return res.status(400).json({ error: "Unknown page name" });
   }
   // Build WHERE conditions based on filters

@@ -4,6 +4,8 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { IRootState } from '../../store';
 import { setPageTitle, toggleRTL } from '../../store/themeConfigSlice';
+import FinYear from './FinYear';
+import { BASE_URL } from '../../config';
 
 interface Report {
     formName: string;
@@ -38,6 +40,7 @@ const ReportFromStock: React.FC = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const pagename = searchParams.get('page') || '';
+    const [FinYear, setFinYear] = useState<string>('2025-26');
     const dispatch = useDispatch();
 
     const prevPageRef = useRef(pagename);
@@ -61,7 +64,7 @@ const ReportFromStock: React.FC = () => {
     useEffect(() => {
         const fetchFilter = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/getFilter?formName=${encodeURIComponent(pagename)}`, {
+                const response = await axios.get(`${BASE_URL}/getFilter?formName=${encodeURIComponent(pagename)}`, {
                     withCredentials: true,
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -85,13 +88,13 @@ const ReportFromStock: React.FC = () => {
     }, [pagename]);
 
     useEffect(() => {
-        const fetchDropdownOptions = async () => {
+        const getfilterData = async () => {
             const dropdownFields = reportField.filter((field) => field.control === 'Dropdown');
             const data: { [key: string]: string[] } = {};
             if (dropdownFields.length === 0) return;
             for (const field of dropdownFields) {
                 try {
-                    const response = await axios.get('http://localhost:3000/getfilterData', {
+                    const response = await axios.get(`${BASE_URL}/getfilterData`, {
                         params: {
                             pageName: pagename,
                             column: field.name,
@@ -109,12 +112,12 @@ const ReportFromStock: React.FC = () => {
             }
             setDropdownData(data);
         };
-        fetchDropdownOptions();
+        getfilterData();
     }, [pagename, reportField]);
 
-    const fetchFilteredData = async () => {
+    const reportSearch = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/reportSearch', {
+            const response = await axios.get(`${BASE_URL}/reportSearch`, {
                 params: {
                     pageName: pagename,
                     formData: JSON.stringify(formData),
@@ -136,7 +139,7 @@ const ReportFromStock: React.FC = () => {
     const handleSearch = () => {
         setCurrentPage(1);
         setSortConfig({ key: null, direction: null });
-        fetchFilteredData();
+        reportSearch();
     };
 
     const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

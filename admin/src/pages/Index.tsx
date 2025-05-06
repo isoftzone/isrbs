@@ -23,6 +23,7 @@ import IconCaretDown from '../components/Icon/IconCaretDown';
 import IconPlus from '../components/Icon/IconPlus';
 import IconMultipleForwardRight from '../components/Icon/IconMultipleForwardRight';
 import FinYear from './Components/FinYear';
+import { BASE_URL } from '../config';
 
 
 
@@ -53,7 +54,7 @@ const Index = () => {
     useEffect(() => {
         const fetchCustomer = async () => {
           try {
-            const response = await axios.get('http://localhost:3000/getTCustomer', {
+            const response = await axios.get(`${BASE_URL}/getTCustomer`, {
               withCredentials: true,
               headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -84,7 +85,7 @@ const Index = () => {
   useEffect(() => {
   const fetchSale = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/getTSale', {
+      const response = await axios.get(`${BASE_URL}/getTSale`, {
         params: {
           FinYear: FinYear, // Correct way
         },
@@ -112,7 +113,7 @@ const Index = () => {
       useEffect(() => {
         const fetchPurchase = async () => {
           try {
-            const response = await axios.get('http://localhost:3000/getTPurchase', {
+            const response = await axios.get(`${BASE_URL}/getTPurchase`, {
                 params: {
                     FinYear: FinYear, // Correct way
                   },
@@ -146,7 +147,7 @@ const Index = () => {
             useEffect(() => {
                 const fetchStock = async () => {
                   try {
-                    const response = await axios.get('http://localhost:3000/getTStock', {
+                    const response = await axios.get(`${BASE_URL}/getTStock`, {
                       params: { FinYear }, // ✅ Only FinYear is needed
                       withCredentials: true,
                       headers: {

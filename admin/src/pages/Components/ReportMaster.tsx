@@ -48,7 +48,7 @@ export const ReportMaster: React.FC = () => {
 
   const fetchSalesDetail = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/getrfmaster', {
+      const response = await axios.get(`${BASE_URL}/getrfmaster`, {
         params: { formName: pagename },
         withCredentials: true,
         headers: {
