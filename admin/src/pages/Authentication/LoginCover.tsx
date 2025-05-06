@@ -40,36 +40,39 @@ const LoginCover = () => {
     const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log("name,email", email, password);
-
+       
+        const payload = {
+            email,
+            password,
+        };
+    
         try {
-            const response = await axios.post(`${BASE_URL}/login`, {
-                email, password
-            },
-
-                {
-                    withCredentials: true,
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
+            const response = await axios.post(`${BASE_URL}/login`, payload, {
+              withCredentials: true,
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+          
             console.log('login Response:', response); // Debugging line
-
+          
             if (response.status === 200) {
-                const userData = response.data.user;
-                // Redirect or perform any action after successful login
-                localStorage.setItem('userData', JSON.stringify(userData));
-                setAlert({ message: 'Login successful!', type: 'success' });
-                setTimeout(() => {
-                    navigate('/index', { replace: false }); // Use replace option to prevent going back
-                }, 1000); // Adjust delay as needed
+              const userData = response.data.user;
+              localStorage.setItem('userData', JSON.stringify(userData));
+              setAlert({ message: 'Login successful!', type: 'success' });
+              setTimeout(() => {
+                navigate('/index', { replace: false });
+              }, 1000);
             } else if (response.status === 401) {
-                const { msg } = response.data;
-                setAlert({ message: msg, type: 'error' });
+              const { msg } = response.data;
+              setAlert({ message: msg, type: 'error' });
             } else {
-                // Handle other unexpected responses
-                setAlert({ message: 'Unexpected response from server. Please try again.', type: 'error' });
+              setAlert({
+                message: 'Unexpected response from server. Please try again.',
+                type: 'error',
+              });
             }
-        } catch (error) {
+          }  catch (error) {
             if (axios.isAxiosError(error)) {
                 if (error.response && error.response.data && error.response.data.msg) {
                     // Handle specific error messages returned from server

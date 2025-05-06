@@ -21,11 +21,12 @@ const addProductData = require("../controllers/addProductData");
 const master = require("../controllers/master");
 const salesmaster = require("../controllers/salesmaster");
 const salesdetail = require("../controllers/salesdetail");
-const rfmaster = require("../controllers/rfmaster");
+// const rfmaster = require("../controllers/rfmaster");
 const verifyToken = require("../middlewares/authMiddleware");
 const purchasemaster = require("../controllers/purchasemaster");
 const item = require("../controllers/item");
 const stockdetial = require("../controllers/stockdetail");
+const masterReport = require("../controllers/masterReport");
 // router.post("/addProducts",verifyToken,addProductData.addProducts);
 router.get("/getCodeTypeData", verifyToken, addProductData.getCodeTypeData);
 // router.get('/getCodeTypeAllData',verifyToken, addProductData.getCodeTypeAllData);
@@ -65,8 +66,8 @@ router.get("/getCodeTypeData", verifyToken, addProductData.getCodeTypeData);
 // // ✅ Route to Get Invoices
 // router.get("/getInvoices",verifyToken, salesdetail.getInvoices);
 
-router.post("/add_user",verifyToken, users.addUser);
-router.post("/login",verifyToken, users.loginUser);
+router.post("/add_user", users.addUser);
+router.post("/login", users.loginUser);
 router.get("/getAllUsers", verifyToken, users.getAll);
 router.delete("/deleteUsers/:id", verifyToken, users.deleteUser);
 router.put("/editUser/:id", verifyToken, users.editUser);
@@ -105,8 +106,6 @@ router.post("/postcmbAW", verifyToken, fillCombo.postcmbAW);
 router.get("/getMaster", verifyToken, agent.getMaster);
 router.get("/getMasterPagination", verifyToken, agent.agents);
 router.post("/addMaster", verifyToken, agent.addMaster);
-router.get("/reportSearch", verifyToken, agent.reportSearch);
-router.get("/getfilterData",verifyToken, agent.getfilterData);
 
 router.get("/getPurchase", verifyToken, purchasemaster.getPurchase);
 router.post("/addPurchase", verifyToken, purchasemaster.addPurchase);
@@ -134,7 +133,7 @@ router.get("/gettransport", verifyToken, transport.getTransport);
 
 // router.get("/getLable",verifyToken,lablemaster.getLable);
 
-router.get("/getFilter", verifyToken, rfmaster.getFilter);
+// router.get("/getFilter", verifyToken, rfmaster.getFilter);
 // router.get("/getfilterData", verifyToken, rfmaster.getfilterData);
 router.get(
   "/getDropdownData/:formName/:fieldName",
@@ -153,6 +152,14 @@ router.get("/getTCustomer", verifyToken, dashbord.getTCustomer);
 router.get("/getTSale", verifyToken, dashbord.getTSale);
 router.get("/getTPurchase", verifyToken, dashbord.getTPurchase);
 router.get("/getTStock", verifyToken, dashbord.getTStock);
+
+
+router.get("/getFilter", verifyToken, masterReport.getFilter);
+router.get("/getFilterData", verifyToken, masterReport.getFilterData);
+router.get("/reportSearch", verifyToken, masterReport.reportSearch);
+
+
+
 
 
 
