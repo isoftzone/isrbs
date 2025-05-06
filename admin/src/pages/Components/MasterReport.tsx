@@ -94,7 +94,7 @@ const ReportFromStock: React.FC = () => {
             if (dropdownFields.length === 0) return;
             for (const field of dropdownFields) {
                 try {
-                    const response = await axios.get(`${BASE_URL}/getfilterData`, {
+                    const response = await axios.get(`${BASE_URL}/getFilterData`, {
                         params: {
                             pageName: pagename,
                             column: field.name,
