@@ -67,6 +67,7 @@ const Sidebar = () => {
     const [comparisionSubMenuOpen, setComparisionSubMenuOpen] = useState(false);
     const [deliverySubMenuOpen, setDeliverySubMenuOpen] = useState(false);
     const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+    const [calcSubMenuOpen, setcalcSubMenuOpen] = useState(false);
 
     const toggleMenu = (menu: any) => {
         if (menu === 'basic') {
@@ -90,6 +91,24 @@ const Sidebar = () => {
         //     setBasicSubMenuOpen(false);
         //     setPurchaseSubMenuOpen(false);
         // }
+        else if (menu === 'calc') {
+            setcalcSubMenuOpen(!calcSubMenuOpen);
+            setUserSubMenuOpen(false);
+            setBasicSubMenuOpen(false);
+            setPurchaseSubMenuOpen(false);
+            setStockSubMenuOpen(false);
+            setSalesSubMenuOpen(false);
+            setChartsSubMenuOpen(false);
+            setAccountSubMenuOpen(false);
+            setStransferSubMenuOpen(false);
+            setGstSubMenuOpen(false);
+            setGstReturnSubMenuOpen(false);
+            setEmpSubMenuOpen(false);
+            setPivotSubMenuOpen(false);
+            setOrderSubMenuOpen(false);
+            setDeliverySubMenuOpen(false);
+        
+        }
         else if (menu === 'purchase') {
             setPurchaseSubMenuOpen(!purchaseSubMenuOpen);
             setUserSubMenuOpen(false);
@@ -341,6 +360,7 @@ const Sidebar = () => {
         const storedsBestInSubMenuState = localStorage.getItem('bestInSubMenuOpen');
         const storedsComparisionSubMenuState = localStorage.getItem('comparisionSubMenuOpen');
         const storedsSalesReportSubMenuState = localStorage.getItem('salesReportSubMenuOpen');
+        const storedcalcSubMenuOpenState = localStorage.getItem('calcSubMenuOpen');
         if (storedBasicSubMenuState) {
             setBasicSubMenuOpen(storedBasicSubMenuState === 'true');
         }
@@ -395,6 +415,9 @@ const Sidebar = () => {
         if (storedsComparisionSubMenuState) {
             setComparisionSubMenuOpen(storedsComparisionSubMenuState === 'true');
         }
+         if (storedcalcSubMenuOpenState) {
+             setcalcSubMenuOpen(storedcalcSubMenuOpenState === 'true');
+         }
     }, []);
 
     useEffect(() => {
@@ -416,6 +439,7 @@ const Sidebar = () => {
         localStorage.setItem('bestInSubMenuOpen', bestInSubMenuOpen.toString());
         localStorage.setItem('comparisionSubMenuOpen', comparisionSubMenuOpen.toString());
         localStorage.setItem('salesReportSubMenuOpen', salesReportSubMenuOpen.toString());
+        localStorage.setItem('calcSubMenuOpen', calcSubMenuOpen.toString());
     }, [
         basicSubMenuOpen,
         userSubMenuOpen,
@@ -435,6 +459,7 @@ const Sidebar = () => {
         salesReturnSubMenuOpen,
         bestInSubMenuOpen,
         comparisionSubMenuOpen,
+        calcSubMenuOpen,
     ]);
     // useEffect(() => {
     //     setBasicSubMenuOpen(false);
@@ -938,43 +963,65 @@ const Sidebar = () => {
                                         <IconCaretDown />
                                     </div>
                                 </button>
-                                <AnimateHeight duration={300} height={currentMenu === 'web' ? 'auto' : 0}>
+
+                                <AnimateHeight duration={300} height={currentMenu === 'web' || calcSubMenuOpen ? 'auto' : 0}>
                                     <ul className="sub-menu text-gray-500">
-                                        {/* <li>
-                                            <NavLink to="/pages/knowledge-base">{t('knowledge_base')}</NavLink>
-                                        </li> */}
-                                       <li>
-                                                                    <NavLink to="/components/discountcoupon">Item Setting</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Item Rate Calculation</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Rate Code</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Print Margin</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">SMS Sending</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">HSN Code</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Sale Price Discount</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Category</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Mark Up/Down</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="/components/refferalcoupan">Refresh</NavLink>
-                                                                </li>
-  
-                                        
+                                        <li>
+                                            <button type="button" className={`${calcSubMenuOpen ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('calc')}>
+                                                <div className="flex items-center">
+                                                    <IconMenuDatatables className="group-hover:!text-primary shrink-0" />
+                                                    <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Calculation</span>
+                                                </div>
+                                                <div className={calcSubMenuOpen ? '' : 'rtl:rotate-90 -rotate-90'}>
+                                                    <IconCaretDown />
+                                                </div>
+                                            </button>
+
+                                            <AnimateHeight duration={300} height={calcSubMenuOpen ? 'auto' : 0}>
+                                                <ul className="sub-menu text-gray-500">
+                                                    <li>
+                                                        <NavLink to="/components/MasterCalculations">Master Calculation</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/components/PurchaseCalculations">Purchase Calculation</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="/components/SalesCalculations">Sales Calculation</NavLink>
+                                                    </li>
+                                                </ul>
+                                            </AnimateHeight>
+                                        </li>
+
+                                        <li>
+                                            <NavLink to="/components/discountcoupon">Item Setting</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Item Rate Calculation</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Rate Code</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Print Margin</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">SMS Sending</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">HSN Code</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Sale Price Discount</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Category</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Mark Up/Down</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/components/refferalcoupan">Refresh</NavLink>
+                                        </li>
                                     </ul>
                                 </AnimateHeight>
                             </li>
@@ -1055,10 +1102,10 @@ const Sidebar = () => {
                                                     </li>
                                                     {/* <li>
                                     <NavLink to="/datatables/masterInput">Setting</NavLink>
-                                </li> 
-                                <li>
+                                    </li> 
+                                    <li>
                                     <NavLink to="/datatables/frmCodeType">CodeType</NavLink>
-                                </li>   */}
+                                    </li>   */}
                                                 </ul>
                                             </AnimateHeight>
                                         </li>
@@ -1300,7 +1347,7 @@ const Sidebar = () => {
 
                                             <AnimateHeight duration={300} height={stockSubMenuOpen ? 'auto' : 0}>
                                                 <ul className="sub-menu text-gray-500">
-                                                <li>
+                                                    <li>
                                                         <NavLink to="/components/reportfromstock?page=agent">Agent</NavLink>
                                                     </li>
                                                     <li>
@@ -1504,51 +1551,51 @@ const Sidebar = () => {
                                             </AnimateHeight>
                                         </li>
                                         <li>
-                                                        <button type="button" className={`${bestInSubMenuOpen ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('best_in')}>
-                                                            <div className="flex items-center">
-                                                                <IconMenuDatatables className="group-hover:!text-primary shrink-0" />
-                                                                <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Stock</span>
-                                                            </div>
-                                                            <div className={bestInSubMenuOpen ? '' : 'rtl:rotate-90 -rotate-90'}>
-                                                                <IconCaretDown />
-                                                            </div>
-                                                        </button>
+                                            <button type="button" className={`${bestInSubMenuOpen ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('best_in')}>
+                                                <div className="flex items-center">
+                                                    <IconMenuDatatables className="group-hover:!text-primary shrink-0" />
+                                                    <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Stock</span>
+                                                </div>
+                                                <div className={bestInSubMenuOpen ? '' : 'rtl:rotate-90 -rotate-90'}>
+                                                    <IconCaretDown />
+                                                </div>
+                                            </button>
 
-                                                        <AnimateHeight duration={300} height={bestInSubMenuOpen ? 'auto' : 0}>
-                                                        <ul className="sub-menu text-gray-500">
-                                                                <li>
-                                                                    <NavLink to="/components/reportfromstock?page=Stockdetail">Stock Detail</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="#">Brand Item Wise</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="#">Item Brand Item Wise</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="#">Brand Size Wise</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="#">Stock Movement</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="#">Stock Report</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="#">Stcok Aging</NavLink>
-                                                                </li>
-                                                                <li>
-                                                                    <NavLink to="#">Stock Summary Item Name Wise</NavLink>
-                                                                </li>
-                                                                {/* <li>
+                                            <AnimateHeight duration={300} height={bestInSubMenuOpen ? 'auto' : 0}>
+                                                <ul className="sub-menu text-gray-500">
+                                                    <li>
+                                                        <NavLink to="/components/reportfromstock?page=Stockdetail">Stock Detail</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="#">Brand Item Wise</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="#">Item Brand Item Wise</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="#">Brand Size Wise</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="#">Stock Movement</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="#">Stock Report</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="#">Stcok Aging</NavLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavLink to="#">Stock Summary Item Name Wise</NavLink>
+                                                    </li>
+                                                    {/* <li>
                                                                     <NavLink to="#">Dealer Wise Sales</NavLink>
                                                                 </li>
                                                                 <li>
                                                                     <NavLink to="#">Sales</NavLink>
                                                                 </li> */}
-                                                            </ul>
-                                                        </AnimateHeight>
-                                                    </li>
+                                                </ul>
+                                            </AnimateHeight>
+                                        </li>
                                         <li>
                                             <button type="button" className={`${salesSubMenuOpen ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('sales')}>
                                                 <div className="flex items-center">
@@ -1610,15 +1657,10 @@ const Sidebar = () => {
                                                             </ul>
                                                         </AnimateHeight>
                                                     </li>
-                                                   
-                                                   
-                                                    
-                                                   
-                                                 
                                                 </ul>
                                             </AnimateHeight>
                                         </li>
-                                       
+
                                         <li>
                                             <NavLink to="/components/customermaster">Stock</NavLink>
                                         </li>
@@ -1650,7 +1692,6 @@ const Sidebar = () => {
                                 </AnimateHeight>
                             </li>
 
-
                             {/* <li className="menu nav-item">
                                 <NavLink to="/components/formmaster" className="group">
                                     <div className="flex items-center">
@@ -1659,7 +1700,7 @@ const Sidebar = () => {
                                     </div>
                                 </NavLink>
                             </li> */}
-                             <li className="menu nav-item">
+                            <li className="menu nav-item">
                                 <NavLink to="/Components/item-master" className="group">
                                     <div className="flex items-center">
                                         <IconMenuTables className="group-hover:!text-primary shrink-0" />
