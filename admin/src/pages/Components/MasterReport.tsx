@@ -195,10 +195,14 @@ const ReportFromStock: React.FC = () => {
                 <h2 className="text-lg font-semibold">{pagename.toUpperCase()}</h2>
             </div>
             <div className="flex flex-col lg:flex-row gap-4 bg-gray-100 min-h-screen">
-                <div className="w-full pt-2 xl:w-1/4">
-                    <nav className={`sidebarr min-h-screen top-[6%] bottom-0 w-full lg:w-full z-50 transition-all duration-300 ${semidark ? 'text-white-dark' : ''}`}>
-                        <div className="dark:bg-black h-full flex flex-col">
-                            <div className="shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] bg-white ms-0 lg:ms-3 filter-section flex-grow overflow-y-auto">
+                {/* Sidebar */}
+                <div className="w-full pt-2 lg:w-1/3 xl:w-1/4">
+                    <nav className={`sidebarr h-auto w-full z-50 transition-all duration-300 ${semidark ? 'text-white-dark' : ''}`}>
+                        <div className="dark:bg-black flex flex-col">
+                            <div className="shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] bg-white ms-0 lg:ms-3 filter-section">
+                                <button type="submit" className="btn btn-primary text-white m-2" onClick={handleSearch}>
+                                    Search
+                                </button>
                                 <div className="w-full p-2">
                                     {reportField.map((item, ind) => (
                                         <div key={ind} className="mb-4">
@@ -207,7 +211,12 @@ const ReportFromStock: React.FC = () => {
                                                 {item.control === 'Dropdown' ? (
                                                     <select
                                                         className="w-full border border-gray-300 rounded px-2 py-1"
-                                                        onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))}
+                                                        onChange={(e) =>
+                                                            setFormData((prev) => ({
+                                                                ...prev,
+                                                                [item.name]: e.target.value,
+                                                            }))
+                                                        }
                                                     >
                                                         <option value="">-- All --</option>
                                                         {dropdownData[item.name]?.map((option, index) => (
@@ -221,22 +230,52 @@ const ReportFromStock: React.FC = () => {
                                                         type={item.type === 'Numeric' ? 'number' : 'text'}
                                                         className="w-full border border-gray-300 rounded px-2 py-1"
                                                         placeholder={item.name}
-                                                        onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))}
+                                                        onChange={(e) =>
+                                                            setFormData((prev) => ({
+                                                                ...prev,
+                                                                [item.name]: e.target.value,
+                                                            }))
+                                                        }
                                                     />
                                                 ) : item.control === 'DatetimePicker' ? (
                                                     <input
                                                         type="datetime-local"
                                                         className="w-full border border-gray-300 rounded px-2 py-1"
-                                                        onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))}
+                                                        onChange={(e) =>
+                                                            setFormData((prev) => ({
+                                                                ...prev,
+                                                                [item.name]: e.target.value,
+                                                            }))
+                                                        }
                                                     />
                                                 ) : item.control === 'Radiobutton' ? (
                                                     <div className="flex space-x-4">
                                                         <label>
-                                                            <input type="radio" name={item.name} value="Yes" onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))} />
+                                                            <input
+                                                                type="radio"
+                                                                name={item.name}
+                                                                value="Yes"
+                                                                onChange={(e) =>
+                                                                    setFormData((prev) => ({
+                                                                        ...prev,
+                                                                        [item.name]: e.target.value,
+                                                                    }))
+                                                                }
+                                                            />
                                                             Yes
                                                         </label>
                                                         <label>
-                                                            <input type="radio" name={item.name} value="No" onChange={(e) => setFormData((prev) => ({ ...prev, [item.name]: e.target.value }))} />
+                                                            <input
+                                                                type="radio"
+                                                                name={item.name}
+                                                                value="No"
+                                                                onChange={(e) =>
+                                                                    setFormData((prev) => ({
+                                                                        ...prev,
+                                                                        [item.name]: e.target.value,
+                                                                    }))
+                                                                }
+                                                            />
                                                             No
                                                         </label>
                                                     </div>
@@ -248,27 +287,30 @@ const ReportFromStock: React.FC = () => {
                                     ))}
                                 </div>
                             </div>
-                            <button type="submit" className="bg-primary text-white px-4 py-2 rounded hover:bg-blue-700 w-full mt-3" onClick={handleSearch}>
-                                Search
-                            </button>
                         </div>
                     </nav>
                 </div>
 
-                <div className="flex-1 px-3 overflow-auto">
-                    <div className="overflow-x-auto">
-                        <div className="flex justify-start gap-3 pt-3">
-                            <button className="btn btn-primary">CSV</button>
-                            <button className="btn btn-primary">TXT</button>
-                            <button className="btn btn-primary">EXCEL</button>
-                            <button className="btn btn-primary">PRINT</button>
-                            <input type="search" className=" border border-grey-100 rounded" />
+                {/* Main Content */}
+                <div className="flex-1 px-3 overflow-auto min-w-0">
+                    {/* Export and Search Controls */}
+                    <div className="flex flex-wrap justify-end gap-3 pt-3">
+                        <div className="flex gap-2 flex-wrap justify-center lg:justify-end w-full">
+                            <button className="btn btn-primary text-sm">CSV</button>
+                            <button className="btn btn-primary text-sm">TXT</button>
+                            <button className="btn btn-primary text-sm">EXCEL</button>
+                            <button className="btn btn-primary text-sm">PRINT</button>
+                            <input type="search" className="border border-grey-100 rounded px-2 py-1 text-sm w-full sm:w-auto order-first sm:order-last" placeholder="Search..." />
                         </div>
-                        <table className="min-w-full border border-gray-300">
+                    </div>
+
+                    {/* Table */}
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full border border-gray-300 text-sm">
                             <thead>
                                 <tr>
                                     {headers.map((header) => (
-                                        <th key={header.key} className=" bg-[#4361EE] px-4 py-2 border cursor-pointer" onClick={() => handleSort(header.key)}>
+                                        <th key={header.key} className="bg-[#4361EE] px-4 py-2 border cursor-pointer" onClick={() => handleSort(header.key)}>
                                             <div className="flex items-center text-white">
                                                 <span>{header.label}</span>
                                                 {sortConfig.key === header.key && <span className="ml-2">{sortConfig.direction === 'asc' ? '▲' : '▼'}</span>}
@@ -294,7 +336,7 @@ const ReportFromStock: React.FC = () => {
                                     paginatedSortedData.map((row, index) => (
                                         <tr key={index}>
                                             {headers.map((header) => (
-                                                <td key={header.key} className="border px-2 py-1">
+                                                <td key={header.key} className="border px-2 py-1 whitespace-nowrap">
                                                     {row[header.key]}
                                                 </td>
                                             ))}
@@ -305,6 +347,7 @@ const ReportFromStock: React.FC = () => {
                         </table>
                     </div>
 
+                    {/* Pagination */}
                     <div className="mt-5 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 px-4">
                         <div className="flex items-center gap-x-2">
                             <label htmlFor="rowsPerPage" className="text-sm text-gray-700">
@@ -353,7 +396,7 @@ const ReportFromStock: React.FC = () => {
                                             {currentPage > 2 && currentPage < totalPages ? (
                                                 <button
                                                     onClick={() => setCurrentPage(currentPage)}
-                                                    className={`w-8 h-8 rounded-full flex items-center justify-center bg-gray-200 text-gray-700 hover:bg-gray-300 text-sm`}
+                                                    className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-200 text-gray-700 hover:bg-gray-300 text-sm"
                                                 >
                                                     {currentPage}
                                                 </button>
