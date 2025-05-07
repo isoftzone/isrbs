@@ -403,7 +403,7 @@ const ReportFromStock: React.FC = () => {
                                                     />
                                                 ) : item.control === 'DatePicker' ? (
                                                     <input
-                                                        type="datetime-local"
+                                                        type="date"
                                                         className="w-full border border-gray-300 rounded px-2 py-1"
                                                         onChange={(e) =>
                                                             setFormData((prev) => ({
