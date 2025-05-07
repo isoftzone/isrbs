@@ -39,13 +39,19 @@ const Index = () => {
 
     const [loading] = useState(false);
     const [customer, setCustomer] = useState<number | null>(null);
-    const [netSale, setNetSale] = useState<number | null>(null);
-    const [netPurchase, setNetPurchase] = useState<number | null>(null);
     const [netStock, setNetStock] = useState<number | null>(null);
     const [FinYear, setFinYear] = useState<string>('2025-26');
     const [QTY, setQTY] = useState<number | null>(null);
     const [P_AMOUNT, setP_AMOUNT] = useState<number | null>(null);
     const [MRP_AMOUNT, setMRP_AMOUNT] = useState<number | null>(null);
+    
+    const [SQty, setSQty] = useState<number | null>(null);
+    const [SNetAmount, setSNetAmount] = useState<number | null>(null);
+    const [SBillCount, setSBillCount] = useState<number | null>(null);
+
+    const [PQty, setPQty] = useState<number | null>(null);
+        const [PNetAmount, setPNetAmount] = useState<number | null>(null);
+        const [PBillCount, setPBillCount] = useState<number | null>(null);
     
 
     
@@ -95,11 +101,13 @@ const Index = () => {
         },
       });
 
-      console.log('API Response:', response.data);
+      const {  SNetAmount, SQty, SBillCount } = response.data;
+            console.log("Sale Data",response.data);
+      
+            if (!isNaN(SQty)) setSQty(SQty);
+            if (!isNaN(SNetAmount)) setSNetAmount(SNetAmount);
+            if (!isNaN(SBillCount)) setSBillCount(SBillCount);
 
-      const NetSale = parseFloat(response.data.NetSale);
-      if (!isNaN(NetSale)) setNetSale(NetSale);
-      console.log('NetSale:', NetSale);
     } catch (error) {
       console.error('Error fetching price:', error);
     }
@@ -125,13 +133,14 @@ const Index = () => {
     
             // Debug: log response structure
             console.log('API Response : getTPurchase:', response.data);
-    
-            const netPurchase = parseFloat(response.data.netPurchase);
-            //const receivedChange = parseFloat(response.data.changePercent);
-    
-            if (!isNaN(netPurchase)) setNetPurchase(netPurchase);
-            console.log('netPurchase:', netPurchase);
-    
+               
+            const {  PNetAmount, PQty, PBillCount } = response.data;
+            console.log("Purchase Data",response.data);
+      
+            if (!isNaN(PQty)) setQTY(PQty);
+            if (!isNaN(PNetAmount)) setPNetAmount(PNetAmount);
+            if (!isNaN(PBillCount)) setPBillCount(PBillCount);
+
           } catch (error) {
             console.error('Error fetching price:', error);
           }
@@ -158,7 +167,7 @@ const Index = () => {
                     console.log('API Response : getTStock:', response.data);
               
                     const { QTY, P_AMOUNT, MRP_AMOUNT } = response.data;
-                    console.log("stock ka data",response.data);
+                    console.log("Stock Data",response.data);
               
                     if (!isNaN(QTY)) setQTY(QTY);
                     if (!isNaN(P_AMOUNT)) setP_AMOUNT(P_AMOUNT);
@@ -621,12 +630,12 @@ const Index = () => {
                             </div>
                         </div>
                         <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3">
-        {netPurchase !== null ? `₹${netPurchase.toFixed(2)}` : 'Loading...'}
+        {PNetAmount !== null ? `₹${PNetAmount.toFixed(2)}` : 'Loading...'}
       </div>
-      {netPurchase !== null && (
+      {PNetAmount !== null && (
         <div className="badge bg-white/30">
-          {netPurchase >= 0 ? '+' : ''}
-          {netPurchase.toFixed(2)}%
+          {PNetAmount >= 0 ? '+' : ''}
+          {PNetAmount.toFixed(2)}%
         </div>
       )}
                         <div className="flex items-center font-semibold mt-5">
@@ -662,14 +671,14 @@ const Index = () => {
       </div>
       {P_AMOUNT !== null && (
         <div className="badge bg-white/30">
-          {P_AMOUNT >= 0 ? '+' : ''}
-         Purchase Amount ₹ {P_AMOUNT.toFixed(2)}%
+          {P_AMOUNT >= 0 ? '' : ''}
+         Purchase Amount ₹ {P_AMOUNT.toFixed(2)}
         </div>
         
       )}
       {MRP_AMOUNT !== null && (
         <div className="badge bg-white/30">
-          {MRP_AMOUNT >= 0 ? '+' : ''}
+          {MRP_AMOUNT >= 0 ? '' : ''}
          MRP Amount ₹ {MRP_AMOUNT.toFixed(2)}
         </div>
         
@@ -703,12 +712,12 @@ const Index = () => {
                             </div>
                         </div>
                         <div className="text-3xl font-bold ltr:mr-3 rtl:ml-3">
-        {netSale !== null ? `₹${netSale.toFixed(2)}` : 'Loading...'}
+        {SNetAmount !== null ? `₹${SNetAmount.toFixed(2)}` : 'Loading...'}
       </div>
-      {netSale !== null && (
+      {SNetAmount !== null && (
         <div className="badge bg-white/30">
-          {netSale >= 0 ? '+' : ''}
-          {netSale.toFixed(2)}%
+          {SNetAmount >= 0 ? '+' : ''}
+          {SNetAmount.toFixed(2)}%
         </div>
       )}
                         <div className="flex items-center font-semibold mt-5">

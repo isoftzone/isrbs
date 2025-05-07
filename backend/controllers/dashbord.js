@@ -18,6 +18,23 @@ exports.getTCustomer = async (req, res) => {
   }
 };
 
+// GET total dealer count from DEALERMASTER
+exports.getTDealer = async (req, res) => {
+  const schemaName = req.schema;
+  if (!schemaName) return res.status(400).json({ error: "Schema name is missing" });
+
+  const pool = getTenantDB(schemaName);
+  const query = util.promisify(pool.query).bind(pool);
+
+  try {
+    const result = await query("SELECT COUNT(*) AS totalDealer FROM DEALERMASTER;");
+    res.json({ totalDealer: result[0].totalDealer });
+  } catch (err) {
+    console.error("Error fetching customer count:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 exports.getTSale = async (req, res) => {
   const schemaName = req.schema;
   const companyId = req.companyId;
@@ -32,10 +49,16 @@ exports.getTSale = async (req, res) => {
 
   try {
     const result = await query(
-      "SELECT SUM(NETAMOUNT) AS NetSale, SUM(ITEMQTY) AS TotalQty, Count(*) AS BillCount FROM SALESMASTER WHERE COMPANYID = ? AND FINYEAR = ?",
+      "SELECT SUM(NETAMOUNT) AS SNetAmount, SUM(ITEMQTY) AS SQty, Count(*) AS SBillCount FROM SALESMASTER WHERE COMPANYID = ? AND FINYEAR = ?",
       [companyId, FinYear]
     );
-    res.json({ NetSale: result[0].NetSale || 0 });
+    const output = result[0] || { SNetAmount: 0, SQty: 0, SBillCount: 0 };
+
+    res.json({
+      SNetAmount: output.SNetAmount || 0,
+      SQty: output.SQty || 0,
+      SBillCount: output.SBillCount || 0
+    });
   } catch (err) {
     console.error("Error fetching net sale:", err);
     res.status(500).json({ error: "Internal Server Error" });
@@ -50,8 +73,16 @@ exports.getTPurchase = async (req, res) => {
   const query = util.promisify(pool.query).bind(pool);
 
   try {
-    const result = await query("SELECT SUM(NETAMOUNT) AS NetAmount, SUM(ITEMQTY) AS TotalQty, Count(*) AS BillCount FROM PURCHASEMASTER;");
-    res.json({ netPurchase: result[0].netPurchase || 0 });
+    const result = await query("SELECT SUM(NETAMOUNT) AS PNetAmount, SUM(ITEMQTY) AS PQty, Count(*) AS PBillCount FROM PURCHASEMASTER;");
+    
+    const output = result[0] || { PNetAmount: 0, PQty: 0, PBillCount: 0 };
+
+    res.json({
+      PNetAmount: output.PNetAmount || 0,
+      PQty: output.PQty || 0,
+      PBillCount: output.PBillCount || 0
+    });
+
   } catch (err) {
     console.error("Error fetching purchase:", err);
     res.status(500).json({ error: "Internal Server Error" });
