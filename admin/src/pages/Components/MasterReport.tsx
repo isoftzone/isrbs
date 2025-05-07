@@ -6,6 +6,32 @@ import { IRootState } from '../../store';
 import { setPageTitle, toggleRTL } from '../../store/themeConfigSlice';
 import FinYear from './FinYear';
 import { BASE_URL } from '../../config';
+import { downloadExcel } from 'react-export-table-to-excel';
+
+const rowData = [
+    {
+        id: 1,
+        firstName: 'Caroline',
+        lastName: 'Jensen',
+        email: 'carolinejensen@zidant.com',
+        dob: '2004-05-28',
+        // address: {
+        //     street: '529 Scholes Street',
+        //     city: 'Temperanceville',
+        //     zipcode: 5235,
+        //     geo: {
+        //         lat: 23.806115,
+        //         lng: 164.677197,
+        //     },
+        // },
+        phone: '+1 (821) 447-3782',
+        isActive: true,
+        age: 39,
+        company: 'POLARAX',
+    },
+];
+
+const col = ['id', 'firstName', 'lastName', 'company', 'age', 'dob', 'email', 'phone'];
 
 interface Report {
     formName: string;
@@ -94,7 +120,7 @@ const ReportFromStock: React.FC = () => {
             if (dropdownFields.length === 0) return;
             for (const field of dropdownFields) {
                 try {
-                    const response = await axios.get(`${BASE_URL}/getFilterData`, {
+                    const response = await axios.get(`${BASE_URL}/getfilterData`, {
                         params: {
                             pageName: pagename,
                             column: field.name,
@@ -120,7 +146,6 @@ const ReportFromStock: React.FC = () => {
             const response = await axios.get(`${BASE_URL}/reportSearch`, {
                 params: {
                     pageName: pagename,
-                    FinYear: FinYear,
                     formData: JSON.stringify(formData),
                 },
                 withCredentials: true,
@@ -137,11 +162,134 @@ const ReportFromStock: React.FC = () => {
         }
     };
 
+    function handleDownloadExcel() {
+        downloadExcel({
+            fileName: 'table',
+            sheet: 'react-export-table-to-excel',
+            tablePayload: {
+                header,
+                body: rowData,
+            },
+        });
+    }
+
+    const header = ['Id', 'Firstname', 'Lastname', 'Email', 'Start Date', 'Phone No.', 'Age', 'Company'];
+
+    const exportTable = (type: any) => {
+        let columns: any = col;
+        let records = rowData;
+        let filename = 'table';
+
+        let newVariable: any;
+        newVariable = window.navigator;
+
+        if (type === 'csv') {
+            let coldelimiter = ';';
+            let linedelimiter = '\n';
+            let result = columns
+                .map((d: any) => {
+                    return capitalize(d);
+                })
+                .join(coldelimiter);
+            result += linedelimiter;
+            // eslint-disable-next-line array-callback-return
+            records.map((item: any) => {
+                // eslint-disable-next-line array-callback-return
+                columns.map((d: any, index: any) => {
+                    if (index > 0) {
+                        result += coldelimiter;
+                    }
+                    let val = item[d] ? item[d] : '';
+                    result += val;
+                });
+                result += linedelimiter;
+            });
+
+            if (result == null) return;
+            if (!result.match(/^data:text\/csv/i) && !newVariable.msSaveOrOpenBlob) {
+                var data = 'data:application/csv;charset=utf-8,' + encodeURIComponent(result);
+                var link = document.createElement('a');
+                link.setAttribute('href', data);
+                link.setAttribute('download', filename + '.csv');
+                link.click();
+            } else {
+                var blob = new Blob([result]);
+                if (newVariable.msSaveOrOpenBlob) {
+                    newVariable.msSaveBlob(blob, filename + '.csv');
+                }
+            }
+        } else if (type === 'print') {
+            var rowhtml = '<p>' + filename + '</p>';
+            rowhtml +=
+                '<table style="width: 100%; " cellpadding="0" cellcpacing="0"><thead><tr style="color: #515365; background: #eff5ff; -webkit-print-color-adjust: exact; print-color-adjust: exact; "> ';
+            // eslint-disable-next-line array-callback-return
+            columns.map((d: any) => {
+                rowhtml += '<th>' + capitalize(d) + '</th>';
+            });
+            rowhtml += '</tr></thead>';
+            rowhtml += '<tbody>';
+
+            // eslint-disable-next-line array-callback-return
+            records.map((item: any) => {
+                rowhtml += '<tr>';
+                // eslint-disable-next-line array-callback-return
+                columns.map((d: any) => {
+                    let val = item[d] ? item[d] : '';
+                    rowhtml += '<td>' + val + '</td>';
+                });
+                rowhtml += '</tr>';
+            });
+            rowhtml +=
+                '<style>body {font-family:Arial; color:#495057;}p{text-align:center;font-size:18px;font-weight:bold;margin:15px;}table{ border-collapse: collapse; border-spacing: 0; }th,td{font-size:12px;text-align:left;padding: 4px;}th{padding:8px 4px;}tr:nth-child(2n-1){background:#f7f7f7; }</style>';
+            rowhtml += '</tbody></table>';
+            var winPrint: any = window.open('', '', 'left=0,top=0,width=1000,height=600,toolbar=0,scrollbars=0,status=0');
+            winPrint.document.write('<title>Print</title>' + rowhtml);
+            winPrint.document.close();
+            winPrint.focus();
+            winPrint.print();
+        } else if (type === 'txt') {
+            let coldelimiter = ',';
+            let linedelimiter = '\n';
+            let result = columns
+                .map((d: any) => {
+                    return capitalize(d);
+                })
+                .join(coldelimiter);
+            result += linedelimiter;
+            // eslint-disable-next-line array-callback-return
+            records.map((item: any) => {
+                // eslint-disable-next-line array-callback-return
+                columns.map((d: any, index: any) => {
+                    if (index > 0) {
+                        result += coldelimiter;
+                    }
+                    let val = item[d] ? item[d] : '';
+                    result += val;
+                });
+                result += linedelimiter;
+            });
+
+            if (result == null) return;
+            if (!result.match(/^data:text\/txt/i) && !newVariable.msSaveOrOpenBlob) {
+                var data1 = 'data:application/txt;charset=utf-8,' + encodeURIComponent(result);
+                var link1 = document.createElement('a');
+                link1.setAttribute('href', data1);
+                link1.setAttribute('download', filename + '.txt');
+                link1.click();
+            } else {
+                var blob1 = new Blob([result]);
+                if (newVariable.msSaveOrOpenBlob) {
+                    newVariable.msSaveBlob(blob1, filename + '.txt');
+                }
+            }
+        }
+    };
     const handleSearch = () => {
         setCurrentPage(1);
         setSortConfig({ key: null, direction: null });
         reportSearch();
     };
+
 
     const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setRowsPerPage(parseInt(e.target.value));
@@ -195,18 +343,30 @@ const ReportFromStock: React.FC = () => {
 
     return (
         <div>
-            <div className="flex items-center justify-between py-4 bg-gradient-to-b from-blue-100 to-transparent">
+            <div className="flex items-center justify-between p-4 bg-gradient-to-b rounded from-blue-100 to-transparent">
                 <h2 className="text-lg font-semibold">{pagename.toUpperCase()}</h2>
             </div>
-            <div className="flex flex-col lg:flex-row gap-4 bg-gray-100 min-h-screen">
+            <div className="flex flex-col lg:flex-row gap-4 bg-gray-100">
                 {/* Sidebar */}
-                <div className="w-full pt-2 lg:w-1/3 xl:w-1/4">
+                <div className="w-full p-2 lg:w-1/3 xl:w-1/4">
+                    <div className="flex">
+                        <button type="submit" className="btn btn-primary text-white mx-3 my-1" onClick={handleSearch}>
+                            Search
+                        </button>
+                        <button type="submit" className="btn btn-primary text-white mx-3 my-1" onClick={() => window.location.reload()}>
+                            Clear
+                        </button>
+                    </div>
                     <nav className={`sidebarr h-auto w-full z-50 transition-all duration-300 ${semidark ? 'text-white-dark' : ''}`}>
                         <div className="dark:bg-black flex flex-col">
-                            <div className="shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] bg-white ms-0 lg:ms-3 filter-section">
-                                <button type="submit" className="btn btn-primary text-white m-2" onClick={handleSearch}>
-                                    Search
-                                </button>
+                            <div
+                                className="shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] mt-1 bg-white ms-0 lg:ms-3 filter-section"
+                                style={{
+                                    minHeight: '300px', // Adjust this value for your desired minimum height
+                                    maxHeight: '600px',
+                                    overflowY: 'auto',
+                                }}
+                            >
                                 <div className="w-full p-2">
                                     {reportField.map((item, ind) => (
                                         <div key={ind} className="mb-4">
@@ -300,10 +460,18 @@ const ReportFromStock: React.FC = () => {
                     {/* Export and Search Controls */}
                     <div className="flex flex-wrap justify-end gap-3 pt-3">
                         <div className="flex gap-2 flex-wrap justify-center lg:justify-end w-full">
-                            <button className="btn btn-primary text-sm">CSV</button>
-                            <button className="btn btn-primary text-sm">TXT</button>
-                            <button className="btn btn-primary text-sm">EXCEL</button>
-                            <button className="btn btn-primary text-sm">PRINT</button>
+                            <button className="btn btn-primary text-sm" onClick={() => exportTable('csv')}>
+                                CSV
+                            </button>
+                            <button className="btn btn-primary text-sm" onClick={() => exportTable('txt')}>
+                                TXT
+                            </button>
+                            <button className="btn btn-primary text-sm" onClick={handleDownloadExcel}>
+                                EXCEL
+                            </button>
+                            <button className="btn btn-primary text-sm" onClick={() => exportTable('print')}>
+                                PRINT
+                            </button>
                             <input type="search" className="border border-grey-100 rounded px-2 py-1 text-sm w-full sm:w-auto order-first sm:order-last" placeholder="Search..." />
                         </div>
                     </div>

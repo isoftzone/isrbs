@@ -1612,6 +1612,7 @@ const Sidebar = () => {
                                                     <li>
                                                         <button type="button" className={`${salesReportSubMenuOpen ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('inn_sales')}>
                                                             <div className="flex items-center">
+                                                    <IconMenuDatatables className="group-hover:!text-primary shrink-0" />
                                                                 <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Sales</span>
                                                             </div>
                                                             <div className={salesReportSubMenuOpen ? '' : 'rtl:rotate-90 -rotate-90'}>
@@ -1622,13 +1623,13 @@ const Sidebar = () => {
                                                         <AnimateHeight duration={300} height={salesReportSubMenuOpen ? 'auto' : 0}>
                                                             <ul className="sub-menu text-gray-500">
                                                                 <li>
-                                                                    <NavLink to="#">Sales Report</NavLink>
+                                                                    <NavLink to="/components/reportfromstock?page=salesreport">Sales Report</NavLink>
                                                                 </li>
                                                                 <li>
                                                                     <NavLink to="#">Sales Register</NavLink>
                                                                 </li>
                                                                 <li>
-                                                                    <NavLink to="#">Sales Summary</NavLink>
+                                                                    <NavLink to="/components/reportfromstock?page=salessummary">Sales Summary</NavLink>
                                                                 </li>
                                                                 <li>
                                                                     <NavLink to="#">Sales Detail Report</NavLink>
@@ -1661,7 +1662,7 @@ const Sidebar = () => {
                                             </AnimateHeight>
                                         </li>
 
-                                        <li>
+                                        {/* <li>
                                             <NavLink to="/components/customermaster">Stock</NavLink>
                                         </li>
                                         <li>
@@ -1687,7 +1688,7 @@ const Sidebar = () => {
                                         </li>
                                         <li>
                                             <NavLink to="/components/customermaster">Pivot Report</NavLink>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </AnimateHeight>
                             </li>

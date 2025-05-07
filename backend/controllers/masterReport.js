@@ -43,13 +43,15 @@ exports.getFilterData = async (req, res) => {
   const allowedTables = {
     customer: {
       table: "customermaster",
-      columns: ["customerName", "customerCode"],
+      columns: [column],
     },
-    item: { table: "itemmaster", columns: ["itemName", "itemCode"] },
-    agent: { table: "agentmaster", columns: ["agentName"] },
-    employee: { table: "empmaster", columns: ["empName"] },
-    transport: { table: "transportmaster", columns: ["transportName"] },
-    dealer: { table: "dealermaster", columns: ["dealerName"] },
+    item: { table: "itemmaster", columns: [column] },
+    agent: { table: "agentmaster", columns: [column] },
+    employee: { table: "empmaster", columns: [column] },
+    transport: { table: "transportmaster", columns: [column] },
+    dealer: { table: "dealermaster", columns: [column] },
+    stockdetail: { table: "itemmaster", columns: [column] },
+    salessummary: { table: "", columns: [column] },
   };
 
   const pageConfig = allowedTables[pageName.toLowerCase()];
@@ -86,7 +88,7 @@ exports.reportSearch = async (req, res) => {
   const filters = req.query.formData ? JSON.parse(req.query.formData) : {};
   const limit = parseInt(filters.limit) || 100;
   const offset = parseInt(filters.offset) || 0;
-  
+
   // console.log("schemaName", schemaName);
   // console.log("companyId", companyId);
   // console.log("FinYear", FinYear);
@@ -172,7 +174,7 @@ exports.reportSearch = async (req, res) => {
       orderByClause = " ORDER BY ITEMID ASC";
       break;
 
-    case "Sales":
+    case "salesreport":
       baseQuery = `
               SELECT 
               SM.SERIES, SM.SALEID, DATE_FORMAT(SM.SALEDATE, '%Y-%m-%d') AS SALES_DATE, SM.COUNTER, SM.TMODE AS T_MODE, SM.REMARK,
@@ -182,13 +184,13 @@ exports.reportSearch = async (req, res) => {
               IM.STYLE, IM.UNIT, IM.SUBGROUP, IM.I_GROUP, IM.SUBCATEGORY, IM.CATEGORY, IM.BUYER, IM.SEASON,
               IM.GENDER, IM.MATERIAL, IM.COMPANY, IM.PACKING, IM.BOXSIZE, IM.HSNCODE, IM.MINQTY,
               IM.MAXQTY, IM.REORDERQTY, IM.SHELFNO, IM.SECTION, IM.EXPIRYDAYS, SD.NARRATION,
-              IM.RATE, IM.TAX, IM.CESS, IM.PURPRICE, IM.MRP, IM.SALEPRICE, IM.SP1,
+              IM.RATE, IM.TAX, IM.PURPRICE, IM.MRP, IM.SALEPRICE, IM.SP1,
               IM.SP2, IM.SP3, IM.SP4, IM.ESTAG, IM.ESAMOUNT,
               SD.MRP AS S_MRP, SD.SALEPRICE AS S_SALEPRICE, SD.QTY, SD.DISCOUNT AS I_DISC, SD.DISCAMOUNT AS I_DISCAMOUNT, SD.AMOUNT,
               SD.ADDDISC AS B_DISC, SD.AMOUNT * (SD.ADDDISC / 100) AS B_DISCAMOUNT, SD.ADDDISCA AS T_DISCAMOUNT,
               SD.AMOUNT - (SD.AMOUNT * (SD.ADDDISC / 100)) AS N_AMOUNT, SD.TAX AS B_TAX, SD.TAXAMOUNT AS B_TAXAMOUNT,
               SD.NRATE AS BASE_RATE, SD.SGSTP, SD.CGSTP, SD.IGSTP, SD.SGSTA, SD.CGSTA, SD.IGSTA,
-              SD.CESS AS B_CESS, SD.CESSAMOUNT, (SD.NRATE - IM.RATE) * SD.QTY AS PROFIT
+               (SD.NRATE - IM.RATE) * SD.QTY AS PROFIT
           FROM ITEMMASTER IM
           JOIN SALESDETAIL SD ON IM.COMPANYID = SD.COMPANYID AND SD.ITEMID = IM.ITEMID
           JOIN SALESMASTER SM ON SD.COMPANYID = SM.COMPANYID AND SD.FINYEAR = SM.FINYEAR 
@@ -200,13 +202,13 @@ exports.reportSearch = async (req, res) => {
           WHERE SM.COMPANYID = ? AND SM.FINYEAR = ?
       `;
       params.push(companyId, FinYear);
-      
+
       orderByClause = " ORDER BY SM.SERIES,SM.SALEID,SD.SRNO ASC";
 
       break;
 
-      case "SalesSummary":
-    baseQuery = `
+    case "salessummary":
+      baseQuery = `
         SELECT 
             CONCAT(SM.SERIES, ' - ', SM.SALEID) AS NO,
             DATE_FORMAT(SM.SALEDATE, '%d/%m/%Y') AS SALE_DATE,
@@ -225,14 +227,14 @@ exports.reportSearch = async (req, res) => {
         LEFT JOIN CUSTOMERMASTER CM ON SM.CUSTOMERID = CM.CUSTOMERID
         WHERE SM.FINYEAR = ? AND SM.COMPANYID = ?
     `;
-    params.push(FinYear, companyId);
+      params.push(FinYear, companyId);
 
-    orderByClause = " ORDER BY SM.SERIES,SM.SALEID ASC";
+      orderByClause = " ORDER BY SM.SERIES,SM.SALEID ASC";
 
-    break;
+      break;
 
     case "SalesProfitDetail":
-    baseQuery = `
+      baseQuery = `
         SELECT 
             CONCAT(LEFT(SM.SERIES, 1), '-', SM.SALEID) AS SALE,
             SM.SALEID AS NO,
@@ -256,14 +258,14 @@ exports.reportSearch = async (req, res) => {
         JOIN ITEMMASTER IM ON SD.ITEMID = IM.ITEMID
         WHERE SM.FINYEAR = ? AND SM.COMPANYID = ?
     `;
-    params.push(FinYear, companyId);
+      params.push(FinYear, companyId);
 
-    orderByClause = " ORDER BY SM.SERIES,SM.SALEID,SD.SRNO ASC";
+      orderByClause = " ORDER BY SM.SERIES,SM.SALEID,SD.SRNO ASC";
 
-    break;
+      break;
 
-      case "SalesReturn":
-    baseQuery = `
+    case "SalesReturn":
+      baseQuery = `
         SELECT 
             SM.SERIES, SM.SALEID, DATE_FORMAT(SM.SALEDATE, '%Y-%m-%d') AS SALES_DATE, SM.COUNTER, SM.TMODE AS T_MODE, SM.REMARK,
             CUM.FIRMNAME AS C_NAME, CUM.GSTIN AS C_GSTNO, CUM.CMOBILE, CUM.CCITY, CUM.CSTATE, CUM.AGENT,
@@ -289,9 +291,9 @@ exports.reportSearch = async (req, res) => {
         WHERE SM.COMPANYID = ? AND SM.FINYEAR = ?
         
     `;
-    params.push(companyId, FinYear);
-    orderByClause = " ORDER BY SM.SERIES,SM.SALEID,SD.SRNO ASC";
-    break;
+      params.push(companyId, FinYear);
+      orderByClause = " ORDER BY SM.SERIES,SM.SALEID,SD.SRNO ASC";
+      break;
 
     default:
       return res.status(400).json({ error: "Unknown page name" });
@@ -300,9 +302,8 @@ exports.reportSearch = async (req, res) => {
   // Apply filters
   if (filters && typeof filters === "object" && !Array.isArray(filters)) {
     for (const [key, value] of Object.entries(filters)) {
-      
       //Code Start
-      // Skip limit and offset  
+      // Skip limit and offset
       // if (key === "limit" || key === "offset") continue;
       // Skip empty values
       ////if (!value || ['limit', 'offset'].includes(key)) continue;
@@ -332,8 +333,8 @@ exports.reportSearch = async (req, res) => {
   }
 
   baseQuery += orderByClause;
-    
-//// New Code with pagination start 
+
+  //// New Code with pagination start
 
   // // Add pagination
   //   baseQuery += ` LIMIT ? OFFSET ?`;
@@ -344,9 +345,9 @@ exports.reportSearch = async (req, res) => {
   //     const redisKey = `sales-report:${JSON.stringify(filters)}:${limit}:${offset}`;
   //     const cached = await redis.get(redisKey);
   //     if (cached) return res.json(JSON.parse(cached));
-  
+
   //     const result = await query(baseQuery, params);
-  
+
   //     await redis.set(redisKey, JSON.stringify(result), 'EX', 60); // Cache for 60s
   //     res.json(result);
   //   } catch (err) {
@@ -354,17 +355,17 @@ exports.reportSearch = async (req, res) => {
   //     res.status(500).json({ error: "Query execution failed" });
   //   }
 
- //// New Code with pagination End    
+  //// New Code with pagination End
 
-  // Old Code without pagination start 
-        try {
-          const result = await query(baseQuery, params);
-          res.json(result);
-          // console.log("result", result);
-        } catch (err) {
-          console.error("Error executing query:", err);
-          res.status(500).json({ error: "Query execution failed" });
-        }
+  // Old Code without pagination start
+  try {
+    const result = await query(baseQuery, params);
+    res.json(result);
+    // console.log("result", result);
+  } catch (err) {
+    console.error("Error executing query:", err);
+    res.status(500).json({ error: "Query execution failed" });
+  }
   // Old Code without pagination end
 };
 
