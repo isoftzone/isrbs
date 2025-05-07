@@ -120,6 +120,7 @@ const ReportFromStock: React.FC = () => {
             const response = await axios.get(`${BASE_URL}/reportSearch`, {
                 params: {
                     pageName: pagename,
+                    FinYear: FinYear,
                     formData: JSON.stringify(formData),
                 },
                 withCredentials: true,

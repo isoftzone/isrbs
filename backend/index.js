@@ -35,7 +35,7 @@ process.on("unhandledRejection", (reason, promise) => {
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://retail.yoappstor.com' // optional
+  'https://retail.yoappstore.com' // optional
 ];
 
 app.use(cors({

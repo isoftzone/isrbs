@@ -32,7 +32,7 @@ exports.getTSale = async (req, res) => {
 
   try {
     const result = await query(
-      "SELECT SUM(NETAMOUNT) AS NetSale FROM SALESMASTER WHERE COMPANYID = ? AND FINYEAR = ?",
+      "SELECT SUM(NETAMOUNT) AS NetSale, SUM(ITEMQTY) AS TotalQty, Count(*) AS BillCount FROM SALESMASTER WHERE COMPANYID = ? AND FINYEAR = ?",
       [companyId, FinYear]
     );
     res.json({ NetSale: result[0].NetSale || 0 });
@@ -50,7 +50,7 @@ exports.getTPurchase = async (req, res) => {
   const query = util.promisify(pool.query).bind(pool);
 
   try {
-    const result = await query("SELECT SUM(NETAMOUNT) AS netPurchase FROM PURCHASEMASTER;");
+    const result = await query("SELECT SUM(NETAMOUNT) AS NetAmount, SUM(ITEMQTY) AS TotalQty, Count(*) AS BillCount FROM PURCHASEMASTER;");
     res.json({ netPurchase: result[0].netPurchase || 0 });
   } catch (err) {
     console.error("Error fetching purchase:", err);
