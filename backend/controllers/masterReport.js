@@ -264,7 +264,7 @@ exports.reportSearch = async (req, res) => {
 
       break;
 
-    case "SalesReturn":
+    case "salesreturn":
       baseQuery = `
         SELECT 
             SM.SERIES, SM.SALEID, DATE_FORMAT(SM.SALEDATE, '%Y-%m-%d') AS SALES_DATE, SM.COUNTER, SM.TMODE AS T_MODE, SM.REMARK,

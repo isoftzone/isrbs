@@ -401,7 +401,7 @@ const ReportFromStock: React.FC = () => {
                                                             }))
                                                         }
                                                     />
-                                                ) : item.control === 'DatetimePicker' ? (
+                                                ) : item.control === 'DatePicker' ? (
                                                     <input
                                                         type="datetime-local"
                                                         className="w-full border border-gray-300 rounded px-2 py-1"
