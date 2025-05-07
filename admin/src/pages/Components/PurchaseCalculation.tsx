@@ -164,15 +164,19 @@ const PurchaseCalculation = () => {
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div className="text-center">
-                                            <div className="text-xs font-semibold">(</div>
                                             <div className="flex justify-center space-x-2 text-sm font-normal">
-                                                <span>Tax(%)</span>
-                                                <span>5</span>
+                                                <span>(</span>
+                                                <span>
+                                                    Tax(%)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
                                                 <span>or</span>
-                                                <span>Tax(Rs.)</span>
-                                                <span>5</span>
+                                                <span>
+                                                    Tax(Rs.)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
+                                                <span>)</span>
                                             </div>
-                                            <div className="text-xs font-semibold">)</div>
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">=</div>
                                         <div>
@@ -198,15 +202,19 @@ const PurchaseCalculation = () => {
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div className="text-center">
-                                            <div className="text-xs font-semibold">(</div>
                                             <div className="flex justify-center space-x-2 text-sm font-normal">
-                                                <span>Tax(%)</span>
-                                                <span>5</span>
+                                                <span>(</span>
+                                                <span>
+                                                    Tax(%)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
                                                 <span>or</span>
-                                                <span>Tax(Rs.)</span>
-                                                <span>5</span>
+                                                <span>
+                                                    Tax(Rs.)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
+                                                <span>)</span>
                                             </div>
-                                            <div className="text-xs font-semibold">)</div>
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div>
@@ -237,15 +245,19 @@ const PurchaseCalculation = () => {
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div className="text-center">
-                                            <div className="text-xs font-semibold">(</div>
                                             <div className="flex justify-center space-x-2 text-sm font-normal">
-                                                <span>Tax(%)</span>
-                                                <span>5</span>
+                                                <span>(</span>
+                                                <span>
+                                                    Tax(%)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
                                                 <span>or</span>
-                                                <span>Tax(Rs.)</span>
-                                                <span>5</span>
+                                                <span>
+                                                    Tax(Rs.)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
+                                                <span>)</span>
                                             </div>
-                                            <div className="text-xs font-semibold">)</div>
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div>
@@ -281,15 +293,19 @@ const PurchaseCalculation = () => {
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div className="text-center">
-                                            <div className="text-xs font-semibold">(</div>
                                             <div className="flex justify-center space-x-2 text-sm font-normal">
-                                                <span>Tax(%)</span>
-                                                <span>5</span>
+                                                <span>(</span>
+                                                <span>
+                                                    Tax(%)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
                                                 <span>or</span>
-                                                <span>Tax(Rs.)</span>
-                                                <span>5</span>
+                                                <span>
+                                                    Tax(Rs.)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
+                                                <span>)</span>
                                             </div>
-                                            <div className="text-xs font-semibold">)</div>
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div>
@@ -340,15 +356,19 @@ const PurchaseCalculation = () => {
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">-</div>
                                         <div className="text-center">
-                                            <div className="text-xs font-semibold">(</div>
                                             <div className="flex justify-center space-x-2 text-sm font-normal">
-                                                <span>Disc (%)</span>
-                                                <span>5</span>
+                                                <span>(</span>
+                                                <span>
+                                                    Disc(%)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
                                                 <span>or</span>
-                                                <span>Disc (Rs.)</span>
-                                                <span>5</span>
+                                                <span>
+                                                    Disc(Rs.)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
+                                                <span>)</span>
                                             </div>
-                                            <div className="text-xs font-semibold">)</div>
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">=</div>
                                         <div>
@@ -357,15 +377,19 @@ const PurchaseCalculation = () => {
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div className="text-center">
-                                            <div className="text-xs font-semibold">(</div>
                                             <div className="flex justify-center space-x-2 text-sm font-normal">
-                                                <span>Tax(%)</span>
-                                                <span>5</span>
+                                                <span>(</span>
+                                                <span>
+                                                    Tax(%)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
                                                 <span>or</span>
-                                                <span>Tax(Rs.)</span>
-                                                <span>5</span>
+                                                <span>
+                                                    Tax(Rs.)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
+                                                <span>)</span>
                                             </div>
-                                            <div className="text-xs font-semibold">)</div>
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">=</div>
                                         <div>
@@ -391,15 +415,19 @@ const PurchaseCalculation = () => {
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">-</div>
                                         <div className="text-center">
-                                            <div className="text-xs font-semibold">(</div>
                                             <div className="flex justify-center space-x-2 text-sm font-normal">
-                                                <span>Disc (%)</span>
-                                                <span>5</span>
+                                                <span>(</span>
+                                                <span>
+                                                    Disc(%)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
                                                 <span>or</span>
-                                                <span>Disc (Rs.)</span>
-                                                <span>5</span>
+                                                <span>
+                                                    Disc(Rs.)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
+                                                <span>)</span>
                                             </div>
-                                            <div className="text-xs font-semibold">)</div>
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">=</div>
                                         <div>
@@ -408,15 +436,19 @@ const PurchaseCalculation = () => {
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div className="text-center">
-                                            <div className="text-xs font-semibold">(</div>
                                             <div className="flex justify-center space-x-2 text-sm font-normal">
-                                                <span>Tax(%)</span>
-                                                <span>5</span>
+                                                <span>(</span>
+                                                <span>
+                                                    Tax(%)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
                                                 <span>or</span>
-                                                <span>Tax(Rs.)</span>
-                                                <span>5</span>
+                                                <span>
+                                                    Tax(Rs.)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
+                                                <span>)</span>
                                             </div>
-                                            <div className="text-xs font-semibold">)</div>
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div>
@@ -447,15 +479,19 @@ const PurchaseCalculation = () => {
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">-</div>
                                         <div className="text-center">
-                                            <div className="text-xs font-semibold">(</div>
                                             <div className="flex justify-center space-x-2 text-sm font-normal">
-                                                <span>Disc (%)</span>
-                                                <span>5</span>
+                                                <span>(</span>
+                                                <span>
+                                                    Disc(%)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
                                                 <span>or</span>
-                                                <span>Disc (Rs.)</span>
-                                                <span>5</span>
+                                                <span>
+                                                    Disc(Rs.)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
+                                                <span>)</span>
                                             </div>
-                                            <div className="text-xs font-semibold">)</div>
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">=</div>
                                         <div>
@@ -464,15 +500,19 @@ const PurchaseCalculation = () => {
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div className="text-center">
-                                            <div className="text-xs font-semibold">(</div>
                                             <div className="flex justify-center space-x-2 text-sm font-normal">
-                                                <span>Tax(%)</span>
-                                                <span>5</span>
+                                                <span>(</span>
+                                                <span>
+                                                    Tax(%)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
                                                 <span>or</span>
-                                                <span>Tax(Rs.)</span>
-                                                <span>5</span>
+                                                <span>
+                                                    Tax(Rs.)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
+                                                <span>)</span>
                                             </div>
-                                            <div className="text-xs font-semibold">)</div>
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div>
@@ -508,15 +548,19 @@ const PurchaseCalculation = () => {
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">-</div>
                                         <div className="text-center">
-                                            <div className="text-xs font-semibold">(</div>
                                             <div className="flex justify-center space-x-2 text-sm font-normal">
-                                                <span>Disc (%)</span>
-                                                <span>5</span>
+                                                <span>(</span>
+                                                <span>
+                                                    Disc(%)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
                                                 <span>or</span>
-                                                <span>Disc (Rs.)</span>
-                                                <span>5</span>
+                                                <span>
+                                                    Disc(Rs.)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
+                                                <span>)</span>
                                             </div>
-                                            <div className="text-xs font-semibold">)</div>
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">=</div>
                                         <div>
@@ -525,15 +569,19 @@ const PurchaseCalculation = () => {
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div className="text-center">
-                                            <div className="text-xs font-semibold">(</div>
                                             <div className="flex justify-center space-x-2 text-sm font-normal">
-                                                <span>Tax(%)</span>
-                                                <span>5</span>
+                                                <span>(</span>
+                                                <span>
+                                                    Tax(%)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
                                                 <span>or</span>
-                                                <span>Tax(Rs.)</span>
-                                                <span>5</span>
+                                                <span>
+                                                    Tax(Rs.)
+                                                    <div className="font-mono font-semibold">5</div>
+                                                </span>
+                                                <span>)</span>
                                             </div>
-                                            <div className="text-xs font-semibold">)</div>
                                         </div>
                                         <div className="text-3xl font-bold text-center select-none">+</div>
                                         <div>
